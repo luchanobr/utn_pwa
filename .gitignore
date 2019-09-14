@@ -1,0 +1,14 @@
+
+*/dist
+*/tmp
+**/dist
+**/tmp
+
+**/.env
+*/.env
+.env
+
+/node_modules
+**/node_modules
+*/node_modules
+
