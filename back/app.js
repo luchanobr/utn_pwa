@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongo = require("./database/mongoDB");
 
 // API route
 
@@ -17,7 +17,7 @@ const productosRouter = require("./routes/productos");
 var app = express();
 
 
-// Miidwall
+// middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
