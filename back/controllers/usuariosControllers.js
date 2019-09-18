@@ -26,7 +26,7 @@ module.exports = {
     try {
       let id = req.params.id;
       let saveUser = req.body;
-      let updatedUser = await usuariosModel.findByIdAndUpdate(id, saveUser);
+      let updatedUser = await usuariosModel.updateOne({ _id: id }, saveUser);
       res.status(200).json(updatedUser);
     } catch (e) {
       console.log(e);
