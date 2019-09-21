@@ -13,7 +13,7 @@ module.exports = {
   },
   findOne: async (req, res, next) => {
     try {
-      let id = req.params.id;
+      let id = req.params._id;
       let compra = await comprasModel.findById(id).populate("usuario");
       res.status(200).json(compra);
     } catch (e) {

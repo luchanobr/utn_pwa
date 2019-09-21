@@ -1,7 +1,6 @@
 const mongoose = require("../database/mongoDB");
 const schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
 
 const direccionModel = new schema({
   direccion: String,
@@ -24,7 +23,8 @@ const usuariosSchema = new schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      index: true
     },
     active: {
       type: Boolean,
@@ -37,6 +37,10 @@ const usuariosSchema = new schema(
     direccion: {
       type: [direccionModel],
       required: true
+    },
+    rol: {
+      type: Boolean,
+      default: 0
     }
   },
   {

@@ -3,9 +3,9 @@ const router = express.Router();
 const productosControllers = require("../controllers/productosControllers");
 
 router.get("/", productosControllers.findAll);
-router.get("/:id", productosControllers.findOne);
+router.get("/:_id", productosControllers.findOne);
 router.post("/", productosControllers.create);
-router.put("/id", productosControllers.update);
-router.delete("/:id", productosControllers.remove);
+router.put("/:_id", productosControllers.update);
+router.delete("/:_id", productosControllers.remove);
 
 module.exports = router;

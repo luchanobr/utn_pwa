@@ -23,7 +23,7 @@ module.exports = {
   },
   findOne: async (req, res, next) => {
     try {
-      let id = req.params.id;
+      let id = req.params._id;
       let producto = await productoModel.findById(id).where({ active: 1 });
       res.status(200).json(producto);
     } catch (e) {
@@ -33,7 +33,7 @@ module.exports = {
   },
   update: async (req, res, next) => {
     try {
-      let id = req.params.id;
+      let id = req.params._id;
       let producto = req.body;
       let updatedProducto = await productoModel.updateOne({ _id: id }, producto);
       res.status(200).json(updatedProducto);
@@ -44,7 +44,7 @@ module.exports = {
   },
   remove: async (req, res, next) => {
     try {
-      let id = req.params.id;
+      let id = req.params._id;
       let removeProducto = await productoModel.findByIdAndUpdate({ _id: id }, { active: 0 });
       res.status(200).json(removeProducto);
     } catch (e) {
