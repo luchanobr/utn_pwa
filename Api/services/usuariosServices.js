@@ -1,7 +1,4 @@
 const usuariosModel = require("../models/usuariosModel");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 module.exports = {
   checkUserMail: async email => {
@@ -15,14 +12,6 @@ module.exports = {
     } catch (e) {
       return e;
     }
-  },
-
-  checkUserPassword: (password1, user) => {
-    return bcrypt.compareSync(password1, user.password);
-  },
-
-  setToken: id => {
-    return jwt.sign({ _id: id }, process.env.SECRET, { expiresIn: "12h" });
   },
 
   createUser: async user => {

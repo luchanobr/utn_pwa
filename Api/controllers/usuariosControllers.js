@@ -1,4 +1,5 @@
-const usuariosServices = require("../shared/usuariosServices");
+const usuariosServices = require("../services/usuariosServices");
+const usuariosModel = require("../models/usuariosModel");
 
 module.exports = {
   create: async (req, res, next) => {

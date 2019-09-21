@@ -1,6 +1,6 @@
 const mongoose = require("../database/mongoDB");
 const schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
+const bcrypt = require("../functions/bcrypt");
 
 const direccionModel = new schema({
   direccion: String,
@@ -38,7 +38,7 @@ const usuariosSchema = new schema(
       type: [direccionModel],
       required: true
     },
-    rol: {
+    admin: {
       type: Boolean,
       default: 0
     }
@@ -48,7 +48,7 @@ const usuariosSchema = new schema(
   }
 );
 usuariosSchema.pre("save", function(next) {
-  this.password = bcrypt.hashSync(this.password, 10);
+  this.password = bcrypt.hashPassword(this.password);
   next();
 });
 

@@ -1,11 +1,11 @@
-const productosModel = require("../models/productosModel");
-const productoModel = productosModel.productoModel;
+const productosServicies = require("../services/productosServices");
+const productoModel = require("../models/productosModel").productoModel;
 
 module.exports = {
   create: async (req, res, next) => {
     try {
       const producto = new productoModel(req.body);
-      let newProducto = await productoModel.create(producto);
+      const newProducto = await productosServicies.create(producto);
       res.status(201).json(newProducto);
     } catch (e) {
       console.log(e);
@@ -14,8 +14,8 @@ module.exports = {
   },
   findAll: async (req, res, next) => {
     try {
-      let productos = await productoModel.find({}).where({ active: 1 });
-      res.status(201).json(productos);
+      const productos = await productosServicies.findAll();
+      res.status(200).json(productos);
     } catch (e) {
       console.log(e);
       res.status(404).json({ error: e });
@@ -23,8 +23,8 @@ module.exports = {
   },
   findOne: async (req, res, next) => {
     try {
-      let id = req.params._id;
-      let producto = await productoModel.findById(id).where({ active: 1 });
+      const id = req.params._id;
+      const producto = await productosServicies.findOne(id);
       res.status(200).json(producto);
     } catch (e) {
       console.log(e);
@@ -33,9 +33,9 @@ module.exports = {
   },
   update: async (req, res, next) => {
     try {
-      let id = req.params._id;
-      let producto = req.body;
-      let updatedProducto = await productoModel.updateOne({ _id: id }, producto);
+      const id = req.params._id;
+      const producto = req.body;
+      const updatedProducto = await productoModel.updateOne({ _id: id }, producto);
       res.status(200).json(updatedProducto);
     } catch (e) {
       console.log(e);
@@ -44,8 +44,8 @@ module.exports = {
   },
   remove: async (req, res, next) => {
     try {
-      let id = req.params._id;
-      let removeProducto = await productoModel.findByIdAndUpdate({ _id: id }, { active: 0 });
+      const id = req.params._id;
+      const removeProducto = await productosServicies.removeOne(id);
       res.status(200).json(removeProducto);
     } catch (e) {
       console.log(e);

@@ -1,14 +1,16 @@
-const UsuariosServicies = require("../shared/usuariosServices.js");
+const UsuariosServicies = require("../services/usuariosServices.js");
+const jwt = require("../functions/jwt");
+const brcrypt = require("../functions/bcrypt");
 
 module.exports = {
   login: async (req, res, next) => {
     try {
       const { email, password } = req.body;
       let user = await UsuariosServicies.checkUserMail(email);
-      if (!UsuariosServicies.checkUserPassword(password, user)) {
+      if (!brcrypt.checkUserPassword(password, user)) {
         throw new Error("password error");
       } else {
-        const token = UsuariosServicies.setToken(user._id);
+        const token = jwt.setToken(user._id);
         res.status(200).json({ user: { _id: user._id, nombre: user.nombre }, token: token });
       }
     } catch (e) {
