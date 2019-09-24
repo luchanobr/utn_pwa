@@ -3,12 +3,7 @@ const usuariosModel = require("../models/usuariosModel");
 module.exports = {
   checkUserMail: async email => {
     try {
-      const user = await usuariosModel.findOne({ email: email });
-      if (!user) {
-        throw new Error({ error: "mail no registrado" });
-      } else {
-        return user;
-      }
+      return await usuariosModel.findOne({ email: email });
     } catch (e) {
       return e;
     }
