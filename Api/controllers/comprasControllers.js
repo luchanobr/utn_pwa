@@ -8,7 +8,7 @@ module.exports = {
       validationResult(req).throw();
       let compra = new comprasModel(req.body);
       let newCompra = comprasServicies.create(compra);
-      res.status(200).json(newCompra);
+      res.status(200).json({ data: newCompra });
     } catch (e) {
       console.log(e);
       res.status(404).json({ error: e });
@@ -19,7 +19,7 @@ module.exports = {
       validationResult(req).throw();
       let id = req.params.id;
       let compra = await comprasServicies.findOne(id);
-      res.status(200).json(compra);
+      res.status(200).json({ data: compra });
     } catch (e) {
       console.log(e);
       res.status(404).json({ error: e });

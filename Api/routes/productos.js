@@ -9,12 +9,12 @@ router.get("/:id", [validators.checkId("id")], productosControllers.findOne);
 router.post(
   "/",
   [
-    validators.checkAlphanumeric("nombre"),
-    validators.checkAlphanumeric("descripcion"),
-    validators.checkFloat("precio"),
-    validators.checkInt("stock"),
+    validators.checkNombre("nombre"),
+    validators.checkDescripcion("descripcion"),
+    validators.checkPrecio("precio"),
+    validators.checkStock("stock"),
     validators.checkUrl("img"),
-    validators.checkBoolean("destacado")
+    validators.checkDestacado("destacado")
   ],
   auth.adminAuth,
   productosControllers.create
@@ -23,12 +23,12 @@ router.put(
   "/:id",
   [
     validators.checkId("id"),
-    validators.checkAlphanumeric("nombre"),
-    validators.checkAlphanumeric("descripcion"),
-    validators.checkFloat("precio"),
-    validators.checkInt("stock"),
+    validators.checkNombre("nombre"),
+    validators.checkDescripcion("descripcion"),
+    validators.checkPrecio("precio"),
+    validators.checkStock("stock"),
     validators.checkUrl("img"),
-    validators.checkBoolean("destacado")
+    validators.checkDestacado("destacado")
   ],
   auth.adminAuth,
   productosControllers.update

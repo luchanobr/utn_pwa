@@ -13,7 +13,7 @@ module.exports = {
         res.status(400).json({
           error: {
             value: email,
-            msg: "mail no registrado",
+            msg: "Email no registrado",
             param: "email",
             location: "body"
           }
@@ -23,14 +23,14 @@ module.exports = {
         res.status(401).json({
           error: {
             value: password,
-            msg: "password incorrecto",
+            msg: "Password incorrecto",
             param: "password",
             location: "body"
           }
         });
       } else {
         const token = jwt.setToken(user._id);
-        res.status(200).json({ user: { _id: user._id, nombre: user.nombre }, token: token });
+        res.status(200).json({ data: { id: user._id, nombre: user.nombre, admin: user.admin }, token: token });
       }
     } catch (e) {
       console.log(e);
