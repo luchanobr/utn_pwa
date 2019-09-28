@@ -11,10 +11,11 @@ router.post(
   [
     validators.checkId('usuario'),
     validators.checkTotal('total'),
-    validators.checkId('productos.*.id'),
-    validators.checkNombre('productos.*.nombre'),
+    validators.checkId('productos.*._id'),
+    validators.checkNombreProducto('productos.*.nombre'),
     validators.checkDescripcion('productos.*.descripcion'),
-    validators.checkPrecio('productos.*.precio')
+    validators.checkPrecio('productos.*.precio'),
+    validators.checkCategoria('productos.*.categoria')
   ],
   auth.userAuth,
   comprasControllers.create

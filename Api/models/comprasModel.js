@@ -43,12 +43,10 @@ const comprasSchema = new schema(
       default: [
         moment(new Date())
           .set({ 'hour': 9, 'minute': 0 })
-          .utc()
-          .format('HH:mm'),
+          .utc(),
         moment(new Date())
           .set({ 'hour': 18, 'minute': 0 })
           .utc()
-          .format('HH:mm')
       ]
     }
   },
