@@ -9,9 +9,13 @@ module.exports = {
     }
   },
 
-  findAll: async () => {
+  findAll: async query => {
     try {
-      return await productoModel.find({}).where({ active: 1 });
+      console.log(query);
+      return await productoModel.paginate(
+        { active: 1, nombre: new RegExp(query.nombre), categoria: new RegExp(query.categoria) },
+        { page: query.page || 1, sort: { precio: -1 } }
+      );
     } catch (e) {
       return e;
     }

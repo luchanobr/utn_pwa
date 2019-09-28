@@ -1,6 +1,6 @@
-const mongoose = require("../database/mongoDB");
+const mongoose = require('../database/mongoDB');
 const schema = mongoose.Schema;
-const bcrypt = require("../functions/bcrypt");
+const bcrypt = require('../functions/bcrypt');
 
 const direccionModel = new schema({
   direccion: String,
@@ -28,7 +28,7 @@ const usuariosSchema = new schema(
     },
     active: {
       type: Boolean,
-      default: 1
+      default: 0
     },
     password: {
       type: String,
@@ -36,6 +36,10 @@ const usuariosSchema = new schema(
     },
     direccion: {
       type: [direccionModel],
+      required: true
+    },
+    telefono: {
+      type: String,
       required: true
     },
     admin: {
@@ -47,9 +51,11 @@ const usuariosSchema = new schema(
     timestamps: true
   }
 );
-usuariosSchema.pre("save", function(next) {
+usuariosSchema.pre('save', function(next) {
   this.password = bcrypt.hashPassword(this.password);
   next();
 });
 
-module.exports = mongoose.model("usuarios", usuariosSchema);
+usuariosSchema.plugin(mongoose.mongoosePaginate);
+
+module.exports = mongoose.model('usuarios', usuariosSchema);

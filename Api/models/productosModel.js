@@ -29,6 +29,10 @@ const productosSchema = new Schema(
       default: 0,
       required: true
     },
+    categoria: {
+      type: String,
+      required: true
+    },
     active: {
       type: Boolean,
       default: 1,
@@ -39,6 +43,8 @@ const productosSchema = new Schema(
     timestamps: true
   }
 );
+
+productosSchema.plugin(mongoose.mongoosePaginate);
 
 module.exports = {
   productoModel: mongoose.model("productos", productosSchema),

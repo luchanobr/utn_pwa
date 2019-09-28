@@ -16,7 +16,7 @@ module.exports = {
   },
   findAll: async (req, res, next) => {
     try {
-      const productos = await productosServicies.findAll();
+      const productos = await productosServicies.findAll(req.query);
       res.status(200).json({ data: productos });
     } catch (e) {
       console.log(e);
@@ -39,7 +39,7 @@ module.exports = {
       validationResult(req).throw();
       const id = req.params.id;
       const producto = req.body;
-      const updatedProducto = await productoModel.updateOne({ _id: id }, producto);
+      const updatedProducto = await productoModel.updateOne(id, producto);
       res.status(200).json({ data: updatedProducto });
     } catch (e) {
       console.log(e);

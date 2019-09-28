@@ -24,5 +24,16 @@ module.exports = {
       console.log(e);
       res.status(404).json({ error: e });
     }
+  },
+
+  findAll: async (req, res, next) => {
+    try {
+      validationResult(req).throw();
+      const compras = await comprasServicies.findAll(req.query);
+      res.status(200).json({ data: compras });
+    } catch (e) {
+      console.log(e);
+      res.status(404).json({ error: e });
+    }
   }
 };
