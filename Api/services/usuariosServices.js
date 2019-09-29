@@ -19,7 +19,7 @@ module.exports = {
 
   findAllUser: async () => {
     try {
-      return await usuariosModel.find({}).where({ active: true });
+      return await usuariosModel.find({});
     } catch (e) {
       return e;
     }
@@ -35,7 +35,7 @@ module.exports = {
 
   findOne: async id => {
     try {
-      return usuariosModel.findById(id).where({ active: true });
+      return usuariosModel.findById(id);
     } catch (e) {}
   },
 
