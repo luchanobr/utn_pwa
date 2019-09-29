@@ -206,5 +206,13 @@ module.exports = {
       .isFloat()
       .withMessage('El total debe ser un número')
       .escape();
+  },
+  checkToken: token => {
+    return param('token')
+      .exists()
+      .withMessage('Token required.')
+      .bail()
+      .isJWT()
+      .withMessage('Token invalido.');
   }
 };

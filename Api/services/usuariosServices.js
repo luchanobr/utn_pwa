@@ -1,4 +1,4 @@
-const usuariosModel = require("../models/usuariosModel");
+const usuariosModel = require('../models/usuariosModel');
 
 module.exports = {
   checkUserMail: async email => {
@@ -37,5 +37,13 @@ module.exports = {
     try {
       return usuariosModel.findById(id).where({ active: true });
     } catch (e) {}
+  },
+
+  activeOne: async id => {
+    try {
+      return usuariosModel.updateOne({ _id: id }, { active: true });
+    } catch (e) {
+      return e;
+    }
   }
 };

@@ -38,5 +38,8 @@ router.put(
   usuariosControllers.update
 );
 router.delete('/:id', [validators.checkParamId('id')], usuariosControllers.remove);
+router.get('/activate/:token', [validators.checkToken('token')], usuariosControllers.activateOne);
+router.post('/resetpassword', [validators.checkEmail('email')], usuariosControllers.emailResetPassword);
+router.put('/resetpassword/:token', [validators.checkToken('token')], usuariosControllers.updatePassword);
 
 module.exports = router;

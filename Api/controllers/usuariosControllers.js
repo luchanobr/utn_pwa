@@ -1,6 +1,9 @@
-const usuariosServices = require("../services/usuariosServices");
-const usuariosModel = require("../models/usuariosModel");
-const { validationResult } = require("express-validator");
+const usuariosServices = require('../services/usuariosServices');
+const usuariosModel = require('../models/usuariosModel');
+const { validationResult } = require('express-validator');
+const nodemail = require('../functions/email');
+const jwt = require('../functions/jwt');
+const brypt = require('../functions/bcrypt');
 
 module.exports = {
   create: async (req, res, next) => {
@@ -8,7 +11,9 @@ module.exports = {
       validationResult(req).throw();
       const user = new usuariosModel(req.body);
       const newUser = await usuariosServices.createUser(user);
-      res.status(200).json({ data: newUser });
+      const token = jwt.setToken(newUser._id);
+      const email = await nodemail.sendEmailNewUser(newUser, token);
+      res.status(200).json({ data: { user: newUser, email: email } });
     } catch (e) {
       console.log(e);
       res.status(400).json(e);
@@ -71,6 +76,48 @@ module.exports = {
     } catch (e) {
       console.log(e);
       res.status(400).json(e);
+    }
+  },
+
+  activateOne: async (req, res, next) => {
+    try {
+      validationResult(req).throw();
+      const userId = jwt.verifyToken(req.params.token);
+      const user = await usuariosServices.activeOne(userId.id);
+      if (user) res.status(200).json({ message: 'Usuario activado' });
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ errors: e });
+    }
+  },
+
+  updatePassword: async (req, res, next) => {
+    try {
+      validationResult(req).throw();
+      const userId = jwt.verifyToken(req.params.token);
+      const password = brypt.hashPassword(req.body.password);
+      const user = await usuariosServices.updateOne({ _id: userId.id }, { password: password });
+      if (user) res.status(200).json({ message: 'Password actualizado' });
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ errors: e });
+    }
+  },
+
+  emailResetPassword: async (req, res, next) => {
+    try {
+      validationResult(req).throw();
+      const user = await usuariosServices.checkUserMail(req.body.email);
+      if (user) {
+        const token = jwt.setToken(user._id);
+        const email = await nodemail.sendEmailResetPass(user, token);
+        res
+          .status(200)
+          .json({ message: 'We have sent a email to your account for the request of password reset ', email: email });
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ errors: e });
     }
   }
 };
