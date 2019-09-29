@@ -1,7 +1,9 @@
-const UsuariosServicies = require("../services/usuariosServices.js");
-const jwt = require("../functions/jwt");
-const brcrypt = require("../functions/bcrypt");
-const { validationResult } = require("express-validator");
+const UsuariosServicies = require('../services/usuariosServices.js');
+const jwt = require('../functions/jwt');
+const brcrypt = require('../functions/bcrypt');
+const { validationResult } = require('express-validator');
+const error = require('../errors/errorClass');
+const errorHandler = require('../errors/errorHandler');
 
 module.exports = {
   login: async (req, res, next) => {
@@ -10,31 +12,16 @@ module.exports = {
       const { email, password } = req.body;
       let user = await UsuariosServicies.checkUserMail(email);
       if (!user) {
-        res.status(400).json({
-          error: {
-            value: email,
-            msg: "Email no registrado",
-            param: "email",
-            location: "body"
-          }
-        });
+        throw new error.UnauthorizedError(email, 'Mail no registrado', 'email', 'body');
       }
       if (!brcrypt.checkUserPassword(password, user)) {
-        res.status(401).json({
-          error: {
-            value: password,
-            msg: "Password incorrecto",
-            param: "password",
-            location: "body"
-          }
-        });
+        throw new error.BadRequestError(password, 'Password incorrecto', 'password', 'body');
       } else {
         const token = jwt.setToken(user._id);
         res.status(200).json({ data: { id: user._id, nombre: user.nombre, admin: user.admin }, token: token });
       }
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   }
 };

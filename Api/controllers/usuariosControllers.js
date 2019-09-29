@@ -4,6 +4,8 @@ const { validationResult } = require('express-validator');
 const nodemail = require('../functions/email');
 const jwt = require('../functions/jwt');
 const brypt = require('../functions/bcrypt');
+const error = require('../errors/errorClass');
+const errorHandler = require('../errors/errorHandler');
 
 module.exports = {
   create: async (req, res, next) => {
@@ -15,8 +17,7 @@ module.exports = {
       const email = await nodemail.sendEmailNewUser(newUser, token);
       res.status(200).json({ data: { user: newUser, email: email } });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -25,8 +26,7 @@ module.exports = {
       const users = await usuariosServices.findAllUser();
       res.status(200).json({ data: users });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -38,8 +38,7 @@ module.exports = {
       const updatedUser = await usuariosServices.updateOne(id, saveUser);
       res.status(200).json({ data: updatedUser });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -50,8 +49,7 @@ module.exports = {
       let user = await usuariosModel.findById(id).where({ active: true });
       res.status(200).json({ data: user });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -62,8 +60,7 @@ module.exports = {
       let deleteUser = await usuariosModel.findByIdAndDelete(id);
       res.status(203).json({ data: deleteUser });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -74,8 +71,7 @@ module.exports = {
       let removeUser = await usuariosModel.findByIdAndUpdate(id, { active: 0 });
       res.status(204).json({ data: removeUser });
     } catch (e) {
-      console.log(e);
-      res.status(400).json(e);
+      errorHandler(res, e);
     }
   },
 
@@ -86,8 +82,7 @@ module.exports = {
       const user = await usuariosServices.activeOne(userId.id);
       if (user) res.status(200).json({ message: 'Usuario activado' });
     } catch (e) {
-      console.log(e);
-      res.status(400).json({ errors: e });
+      errorHandler(res, e);
     }
   },
 
@@ -99,8 +94,7 @@ module.exports = {
       const user = await usuariosServices.updateOne({ _id: userId.id }, { password: password });
       if (user) res.status(200).json({ message: 'Password actualizado' });
     } catch (e) {
-      console.log(e);
-      res.status(400).json({ errors: e });
+      errorHandler(res, e);
     }
   },
 
@@ -116,8 +110,7 @@ module.exports = {
           .json({ message: 'We have sent a email to your account for the request of password reset ', email: email });
       }
     } catch (e) {
-      console.log(e);
-      res.status(400).json({ errors: e });
+      errorHandler(res, e);
     }
   }
 };

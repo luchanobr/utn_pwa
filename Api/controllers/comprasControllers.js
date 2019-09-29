@@ -3,6 +3,7 @@ const comprasServicies = require('../services/comprasServices');
 const usuariosServicies = require('../services/usuariosServices');
 const { validationResult } = require('express-validator');
 const error = require('../errors/errorClass');
+const errorHandler = require('../errors/errorHandler');
 
 module.exports = {
   create: async (req, res, next) => {
@@ -10,15 +11,14 @@ module.exports = {
       validationResult(req).throw();
       const user = await usuariosServicies.findOne(req.body.usuario);
       if (user.active == false) {
-        throw new error.UnauthorizedError('Usuario no validado');
+        throw new error.UnauthorizedError(req.body.usuario, 'Usuario no validado', 'usuario', 'body');
       } else {
         const compra = new comprasModel(req.body);
         const newCompra = await comprasServicies.create(compra);
         res.status(200).json({ data: newCompra });
       }
     } catch (e) {
-      console.log(e);
-      res.status(404).json({ error: e });
+      errorHandler(res, e);
     }
   },
   findOne: async (req, res, next) => {
@@ -28,8 +28,7 @@ module.exports = {
       let compra = await comprasServicies.findOne(id);
       res.status(200).json({ data: compra });
     } catch (e) {
-      console.log(e);
-      res.status(404).json({ error: e });
+      errorHandler(res, e);
     }
   },
 
@@ -39,8 +38,7 @@ module.exports = {
       const compras = await comprasServicies.findAll(req.query);
       res.status(200).json({ data: compras });
     } catch (e) {
-      console.log(e);
-      res.status(404).json({ error: e });
+      errorHandler(res, e);
     }
   }
 };
