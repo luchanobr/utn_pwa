@@ -11,6 +11,92 @@ module.exports = {
       .escape();
   },
 
+  checkLogin: (email, pass) => {
+    return (
+      body(email)
+        .exists()
+        .withMessage('Email required.')
+        .bail()
+        .isEmail()
+        .withMessage('El email es de formato invalido.')
+        .escape(),
+      body(pass)
+        .exists()
+        .withMessage('Password required.')
+        .bail()
+        .isLength({ min: 3, max: 15 })
+        .withMessage('El password debe ser entre 3 y 15 caracteres de largo')
+        .escape()
+    );
+  },
+
+  checkUsuario: (nombre, email, pass, direccion, numero, piso, localidad, provincia, codigoPostal) => {
+    return (
+      body(nombre)
+        .exists()
+        .withMessage('Nombre required.')
+        .bail()
+        .isLength({ min: 3, max: 20 })
+        .withMessage('El nombre debe tener entre 3 y 20 caracteres de largo.')
+        .escape(),
+      body(email)
+        .exists()
+        .withMessage('Email required.')
+        .bail()
+        .isEmail()
+        .withMessage('El email es de formato invalido.')
+        .escape(),
+      body(pass)
+        .exists()
+        .withMessage('Password required.')
+        .bail()
+        .isLength({ min: 3, max: 15 })
+        .withMessage('El password debe ser entre 3 y 15 caracteres de largo')
+        .escape(),
+      body(direccion)
+        .exists()
+        .withMessage('Direccion required.')
+        .isLength({ min: 3, max: 25 })
+        .withMessage('Ña direccion debe tener entre 3 y 25 caracteres de largo')
+        .escape(),
+      body(numero)
+        .exists()
+        .withMessage('Número required.')
+        .bail()
+        .isInt()
+        .withMessage('El número debe ser un entero')
+        .escape(),
+      body(piso)
+        .exists()
+        .withMessage('Piso required.')
+        .bail()
+        .isLength({ max: 20 })
+        .withMessage('El piso no debe superar los 20 caracteres de largo.')
+        .escape(),
+      body(localidad)
+        .exists()
+        .withMessage('Localidad required.')
+        .bail()
+        .isLength({ max: 20 })
+        .withMessage('La localidad no debe superar los 20 caracteres de largo.')
+        .escape(),
+      body(provincia)
+        .exists()
+        .withMessage('Provincia required.')
+        .bail()
+        .isLength({ max: 20 })
+        .withMessage('La provincia no debe superar los 20 caracteres de largo.')
+        .escape(),
+      body(codigoPostal)
+        .exists()
+        .withMessage('Codigo postal required.')
+        .bail()
+        .isLength({ max: 20 })
+        .withMessage('El codigo postal no debe superar los 20 caracteres de largo.')
+        .escape()
+    );
+  },
+
   checkId: id => {
     return body(id)
       .exists()
@@ -23,9 +109,6 @@ module.exports = {
 
   checkEmail: email => {
     return body(email)
-      .exists()
-      .withMessage('Email required.')
-      .bail()
       .isEmail()
       .withMessage('El email es de formato invalido.')
       .escape();
@@ -33,9 +116,6 @@ module.exports = {
 
   checkPassword: pass => {
     return body(pass)
-      .exists()
-      .withMessage('Password required.')
-      .bail()
       .isLength({ min: 3, max: 15 })
       .withMessage('El password debe ser entre 3 y 15 caracteres de largo')
       .escape();
@@ -43,9 +123,6 @@ module.exports = {
 
   checkNombre: nombre => {
     return body(nombre)
-      .exists()
-      .withMessage('Nombre required.')
-      .bail()
       .isLength({ min: 3, max: 20 })
       .withMessage('El nombre debe tener entre 3 y 20 caracteres de largo.')
       .escape();
@@ -92,15 +169,12 @@ module.exports = {
 
   checkDireccion: alphanumeric => {
     return body(alphanumeric)
-      .isAlphanumeric()
-      .withMessage('La direccion debe ser alphanumerica')
+      .isLength({ min: 3, max: 20 })
+      .withMessage('La direccion debe tener entre 3 y 20 caracteres de largo.')
       .escape();
   },
   checkPiso: alphanumeric => {
     return body(alphanumeric)
-      .exists()
-      .withMessage('Piso required.')
-      .bail()
       .isLength({ max: 20 })
       .withMessage('El piso no debe superar los 20 caracteres de largo.')
       .escape();
@@ -108,9 +182,6 @@ module.exports = {
 
   checkLocalidad: alphanumeric => {
     return body(alphanumeric)
-      .exists()
-      .withMessage('Localidad required.')
-      .bail()
       .isLength({ max: 20 })
       .withMessage('La localidad no debe superar los 20 caracteres de largo.')
       .escape();
@@ -118,9 +189,6 @@ module.exports = {
 
   checkProvincia: alphanumeric => {
     return body(alphanumeric)
-      .exists()
-      .withMessage('Provincia required.')
-      .bail()
       .isLength({ max: 20 })
       .withMessage('La provincia no debe superar los 20 caracteres de largo.')
       .escape();
@@ -128,9 +196,6 @@ module.exports = {
 
   checkCodigoPostal: alphanumeric => {
     return body(alphanumeric)
-      .exists()
-      .withMessage('Codigo postal required.')
-      .bail()
       .isLength({ max: 20 })
       .withMessage('El codigo postal no debe superar los 20 caracteres de largo.')
       .escape();
@@ -145,9 +210,6 @@ module.exports = {
 
   checkNumero: integer => {
     return body(integer)
-      .exists()
-      .withMessage('Número required.')
-      .bail()
       .isInt()
       .withMessage('El número debe ser un entero')
       .escape();

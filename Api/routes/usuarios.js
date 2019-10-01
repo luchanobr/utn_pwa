@@ -9,15 +9,17 @@ router.get('/:id', [validators.checkParamId('id')], usuariosControllers.findOne)
 router.post(
   '/',
   [
-    validators.checkNombre('nombre'),
-    validators.checkEmail('email'),
-    validators.checkPassword('password'),
-    validators.checkDireccion('direccion.*.direccion'),
-    validators.checkPiso('direccion.*.piso'),
-    validators.checkLocalidad('direccion.*.localidad'),
-    validators.checkProvincia('direccion.*.provincia'),
-    validators.checkCodigoPostal('direccion.*.codigoPostal'),
-    validators.checkNumero('direccion.*.numero')
+    validators.checkUsuario(
+      'nombre',
+      'email',
+      'password',
+      'direccion.*.direccion',
+      'direccion.*.numero',
+      'direccion.*.piso',
+      'direccion.*.localidad',
+      'direccion.*.provincia',
+      'direccion.*.codigoPostal'
+    )
   ],
   usuariosControllers.create
 );
