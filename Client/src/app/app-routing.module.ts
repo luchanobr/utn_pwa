@@ -4,13 +4,13 @@ import { HomeComponent } from '@core/view/home.component';
 
 const routes: Routes = [
   {
-    path: 'Home',
+    path: '',
     component: HomeComponent,
     data: {}
   },
   {
     path: '**',
-    redirectTo: 'Home'
+    redirectTo: '/'
   }
 ];
 

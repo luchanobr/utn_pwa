@@ -15,7 +15,13 @@ module.exports = {
       } else {
         const compra = new comprasModel(req.body);
         const newCompra = await comprasServicies.create(compra);
-        res.status(200).json({ data: newCompra });
+        const compraPdf = await comprasServicies.findOne(newCompra._id);
+        res.render('factura-template', { compra: compraPdf }, function(err, html) {
+          res.pdfFromHTML({
+            filename: 'factura.pdf',
+            htmlContent: html
+          });
+        });
       }
     } catch (e) {
       errorHandler(res, e);

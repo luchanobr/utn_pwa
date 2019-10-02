@@ -3,12 +3,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-const mongo = require('./database/mongoDB');
 const pdf = require('express-pdf');
 
 var app = express();
 
 // middleware
+app.set('views', './views');
+app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
