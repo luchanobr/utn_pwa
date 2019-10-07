@@ -13,7 +13,14 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods: 'GET,PUT,POST,DELETE,OPTIONS,PACHT',
+    allowedHeaders: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization'
+  })
+);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(pdf);

@@ -27,7 +27,7 @@ module.exports = {
 
   updateOne: async (id, user) => {
     try {
-      return usuariosModel.updateOne({ _id: id }, user);
+      return usuariosModel.findByIdAndUpdate(id, user);
     } catch (e) {
       return e;
     }

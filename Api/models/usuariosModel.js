@@ -11,6 +11,20 @@ const direccionModel = new schema({
   codigoPostal: String
 });
 
+const permisosModel = new schema({
+  productos: {
+    type: String,
+    default: null
+  },
+  compras: {
+    type: String,
+    default: null
+  },
+  usuarios: {
+    type: String,
+    default: null
+  }
+});
 const usuariosSchema = new schema(
   {
     nombre: {
@@ -45,6 +59,10 @@ const usuariosSchema = new schema(
     admin: {
       type: Boolean,
       default: 0
+    },
+    permisos: {
+      type: permisosModel,
+      default: null
     }
   },
   {

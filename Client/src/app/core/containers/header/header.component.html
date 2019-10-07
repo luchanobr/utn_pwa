@@ -1,0 +1,16 @@
+<mat-toolbar
+  fxLayoutAlign.lt-md="start center"
+  fxLayoutAlign.gt-sm="space-between center"
+  fxLayout="row"
+  color="primary"
+>
+  <div fxShow.lt-md="true" fxHide.gt-xs="true" fxFlex="none">
+    <a (click)="sidenavToggle()">
+      <i fxFlexAlign="center" fxFlex="auto" class="material-icons pointer">
+        menu
+      </i>
+    </a>
+  </div>
+  <div fxFlex="none" fxFlexOffset.xs="32vw" fxFlexOffset.sm="39vw">Wyxic</div>
+  <div fxFlex="none" fxShow.lt-md="false" [fxShow]="user | async">{{ (user | async)?.nombre }}</div>
+</mat-toolbar>

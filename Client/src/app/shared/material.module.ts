@@ -39,9 +39,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { LoginFormComponent } from './containers/login-form/login-form.component';
+import { InputComponent } from './utils/input/input.component';
+import { TextAreaComponent } from './utils/text-area/text-area.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LoginFormComponent, InputComponent, TextAreaComponent],
   imports: [MatButtonModule],
   exports: [
     CdkStepperModule,

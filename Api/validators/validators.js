@@ -109,6 +109,7 @@ module.exports = {
 
   checkEmail: email => {
     return body(email)
+      .optional()
       .isEmail()
       .withMessage('El email es de formato invalido.')
       .escape();
@@ -116,6 +117,7 @@ module.exports = {
 
   checkPassword: pass => {
     return body(pass)
+      .optional()
       .isLength({ min: 3, max: 15 })
       .withMessage('El password debe ser entre 3 y 15 caracteres de largo')
       .escape();
@@ -123,6 +125,7 @@ module.exports = {
 
   checkNombre: nombre => {
     return body(nombre)
+      .optional()
       .isLength({ min: 3, max: 20 })
       .withMessage('El nombre debe tener entre 3 y 20 caracteres de largo.')
       .escape();

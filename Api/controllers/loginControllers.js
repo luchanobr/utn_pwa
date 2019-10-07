@@ -18,7 +18,10 @@ module.exports = {
         throw new error.BadRequestError(password, 'Password incorrecto', 'password', 'body');
       } else {
         const token = jwt.setToken(user._id);
-        res.status(200).json({ data: { id: user._id, nombre: user.nombre, admin: user.admin }, token: token });
+        res.status(200).json({
+          data: { id: user._id, nombre: user.nombre, admin: user.admin, permisos: user.permisos, active: user.active },
+          token: token
+        });
       }
     } catch (e) {
       errorHandler(res, e);

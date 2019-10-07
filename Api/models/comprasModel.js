@@ -3,6 +3,7 @@ const schema = mongoose.Schema;
 const moment = require('moment');
 const productosModel = require('./productosModel');
 const productoSchema = productosModel.productosSchema;
+
 const direccionModel = new schema({
   direccion: String,
   numero: Number,
@@ -48,12 +49,16 @@ const comprasSchema = new schema(
           .set({ 'hour': 18, 'minute': 0 })
           .utc()
       ]
+    },
+    factura: {
+      type: Number
     }
   },
   {
     timestamps: true
   }
 );
+
 comprasSchema.plugin(mongoose.mongoosePaginate);
 
 module.exports = mongoose.model('compras', comprasSchema);
