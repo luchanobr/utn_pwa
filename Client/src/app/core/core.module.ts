@@ -1,12 +1,9 @@
 // angular core and common modules
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-//  angular flex loyout
-import { FlexLayoutModule } from '@angular/flex-layout';
+// modules
+import { AngularCommonModule } from '@shared/index';
 
 //angular material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -27,19 +24,15 @@ import { LoginFormComponent } from '@shared/containers/login-form/login-form.com
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 // services
-import { CoreFacade } from '@core/core-facade';
-import { AuthInterceptorService, AothServices } from '@services/index';
+import { CoreFacade } from '@app/core/core.facade';
+import { AuthInterceptorService, AuthServices } from '@services/index';
 import { CoreStore } from '@core/core.store';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [HomeComponent, HeaderComponent, FooterComponent, SideNavComponent, LoginFormComponent],
   imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
+    AngularCommonModule,
     LoadingBarHttpClientModule,
     LoadingBarModule,
     LoadingBarRouterModule,
@@ -51,12 +44,6 @@ import { CoreStore } from '@core/core.store';
     MatButtonModule
   ],
   exports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
     LoadingBarHttpClientModule,
     LoadingBarModule,
     LoadingBarRouterModule,
@@ -83,8 +70,9 @@ export class CoreModule {
       providers: [
         CoreFacade,
         CoreStore,
-        AothServices,
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+        AuthServices,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+        AuthGuard
       ]
     };
   }

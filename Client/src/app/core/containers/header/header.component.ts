@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CoreFacade } from '@core/core-facade';
+import { CoreFacade } from '@app/core/core.facade';
 import { Observable } from 'rxjs';
 import { User } from '@models/index';
 
@@ -20,5 +20,9 @@ export class HeaderComponent implements OnInit {
 
   sidenavToggle() {
     this.sidenav.emit();
+  }
+
+  logout() {
+    this.coreFacade.removeFromLocalStorage();
   }
 }

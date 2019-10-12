@@ -7,7 +7,7 @@ import { LoginResponse } from '../models/login-response';
 import { Credential } from '../models';
 
 @Injectable()
-export class AothServices {
+export class AuthServices {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

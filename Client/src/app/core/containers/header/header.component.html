@@ -12,5 +12,22 @@
     </a>
   </div>
   <div fxFlex="none" fxFlexOffset.xs="32vw" fxFlexOffset.sm="39vw">Wyxic</div>
-  <div fxFlex="none" fxShow.lt-md="false" [fxShow]="user | async">{{ (user | async)?.nombre }}</div>
+  <nav fxLayout="row" fxLayoutGap="10px">
+    <a routerLink="home">Home</a>
+    <a routerLink="dashboard" [fxShow]="user | async">Dashboard</a>
+  </nav>
+  <div fxFlex="none" fxShow.lt-md="false" fxLayout="row" fxLayoutGap="8px" [fxShow]="user | async">
+    <a>
+      <span>{{ (user | async)?.nombre }} </span>
+      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> person_outline </i>
+    </a>
+    <a routerLink="dashboard/settings">
+      <span> Settings </span>
+      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> settings_applications </i>
+    </a>
+    <a (click)="logout()">
+      <span> Logout </span>
+      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> power_settings_new </i>
+    </a>
+  </div>
 </mat-toolbar>

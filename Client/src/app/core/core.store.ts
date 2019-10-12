@@ -13,6 +13,6 @@ export class CoreStore {
     this.user$.next(user);
   }
   getUser(): Observable<User> {
-    return this.user$.asObservable();
+    return this.user$.asObservable().pipe(distinctUntilChanged());
   }
 }
