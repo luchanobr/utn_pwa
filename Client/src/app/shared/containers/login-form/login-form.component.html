@@ -1,24 +1,30 @@
-<mat-card class="border-primary">
-  <mat-card-title fxLayout="row" fxLayoutAlign="center center" class="bg-primary">
+<mat-card class="border-primary mat-elevation-z8">
+  <mat-card-title class="bg-primary uk-border-rounded d-flex justify-content-center align-items-center py-3">
     <h4 class="text-white">Login</h4>
   </mat-card-title>
 
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-    <mat-card-content fxLayout="row wrap" fxLayoutAlign="center center">
-      <mat-form-field fxFlex="75%">
+    <mat-card-content class="row d-flex justify-content-center my-3">
+      <mat-form-field class="col-10">
         <input matInput placeholder="Ingrese su email" formControlName="email" type="email" />
         <mat-error></mat-error>
       </mat-form-field>
 
-      <mat-form-field hintLabel="Max 15 characters" fxFlex="75%">
+      <mat-form-field hintLabel="Max 15 characters" class="col-10">
         <input matInput placeholder="Ingrese su password" formControlName="password" type="password" />
         <mat-hint align="end">{{ loginForm.value.password.length }}/15 </mat-hint>
         <mat-error></mat-error>
       </mat-form-field>
     </mat-card-content>
 
-    <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-      <button mat-flat-button class="bg-success text-white" type="submit" [disabled]="loginForm.invalid" fxFlex="20%">
+    <mat-card-actions class="row d-flex justify-content-center">
+      <button
+        mat-flat-button
+        class="bg-success text-white col-10 col-md-4"
+        type="submit"
+        [disabled]="loginForm.invalid"
+        fxFlex="20%"
+      >
         <i class="material-icons md-18">send</i> Send
       </button>
     </mat-card-actions>

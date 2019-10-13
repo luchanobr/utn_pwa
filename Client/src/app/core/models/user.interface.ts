@@ -1,4 +1,4 @@
-import { Permisos } from './permisos';
+import { Permisos } from './permisos.interface';
 export interface User {
   id: string;
   nombre: string;

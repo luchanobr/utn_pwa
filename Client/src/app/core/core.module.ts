@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 // services
 import { CoreFacade } from '@app/core/core.facade';
-import { AuthInterceptorService, AuthServices } from '@services/index';
+import { AuthInterceptorService, AuthServices } from '@services';
 import { CoreStore } from '@core/core.store';
 import { AuthGuard } from './guards/auth.guard';
 

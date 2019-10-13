@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AuthServices } from '@services/index';
-import { Credential } from '@models/index';
+import { AuthServices } from '@services';
+import { Credential } from '@models';
 import { Observable } from 'rxjs';
 import { CoreStore } from '@core/core.store';
-import { User } from '@models/index';
+import { User } from '@models';
 import { Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 
@@ -20,19 +20,19 @@ export class CoreFacade {
     });
   }
 
-  getUser(): Observable<User> {
-    if (this.loadFromLocalStorage()) {
-      const user = JSON.parse(this.loadFromLocalStorage());
+  get getUser(): Observable<User> {
+    if (this.loadFromLocalStorage) {
+      const user = JSON.parse(this.loadFromLocalStorage);
       this.coreStore.setUser(user);
     }
-    return this.coreStore.getUser();
+    return this.coreStore.getUser;
   }
 
   saveOnLocalStorage(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  loadFromLocalStorage(): string {
+  get loadFromLocalStorage(): string {
     return localStorage.getItem('user');
   }
 
@@ -42,9 +42,9 @@ export class CoreFacade {
     this.router.navigate(['home']);
   }
 
-  isAdmin(): boolean {
+  get isAdmin(): boolean {
     let admin: boolean = false;
-    this.coreStore.getUser().subscribe(user => (user.admin ? (admin = true) : null));
+    this.coreStore.getUser.subscribe(user => (user.admin ? (admin = true) : null));
     return admin;
   }
 }

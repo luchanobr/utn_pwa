@@ -18,9 +18,10 @@
       "@env/*": ["environments/*"],
       "@core/*": ["app/core/*"],
       "@shared/*": ["app/shared/*"],
-      "@services/*": ["app/core/services/*"],
-      "@models/*": ["app/core/models/*"],
-      "@dashboard/*": ["app/dashboard/*"]
+      "@guards": ["app/core/guards"],
+      "@services": ["app/core/services"],
+      "@models": ["app/core/models"],
+      "@dashboard/*": ["app/pages/dashboard/*"]
     }
   },
   "angularCompilerOptions": {

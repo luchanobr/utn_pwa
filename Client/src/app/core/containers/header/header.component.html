@@ -1,33 +1,64 @@
-<mat-toolbar
-  fxLayoutAlign.lt-md="start center"
-  fxLayoutAlign.gt-sm="space-between center"
-  fxLayout="row"
-  color="primary"
->
-  <div fxShow.lt-md="true" fxHide.gt-xs="true" fxFlex="none">
-    <a (click)="sidenavToggle()">
-      <i fxFlexAlign="center" fxFlex="auto" class="material-icons pointer">
-        menu
-      </i>
-    </a>
-  </div>
-  <div fxFlex="none" fxFlexOffset.xs="32vw" fxFlexOffset.sm="39vw">Wyxic</div>
-  <nav fxLayout="row" fxLayoutGap="10px">
-    <a routerLink="home">Home</a>
-    <a routerLink="dashboard" [fxShow]="user | async">Dashboard</a>
-  </nav>
-  <div fxFlex="none" fxShow.lt-md="false" fxLayout="row" fxLayoutGap="8px" [fxShow]="user | async">
-    <a>
-      <span>{{ (user | async)?.nombre }} </span>
-      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> person_outline </i>
-    </a>
-    <a routerLink="dashboard/settings">
-      <span> Settings </span>
-      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> settings_applications </i>
-    </a>
-    <a (click)="logout()">
-      <span> Logout </span>
-      <i fxFlexAlign="center" fxFlex="auto" class="material-icons "> power_settings_new </i>
-    </a>
-  </div>
+<mat-toolbar color="primary" class="sticky-top">
+  <mat-toolbar-row>
+    <div class="d-lg-none">
+      <a (click)="sidenavToggle()">
+        <i class="material-icons pointer">
+          menu
+        </i>
+      </a>
+    </div>
+
+    <div class="mx-auto mx-lg-0 pr-4">Wyxic</div>
+
+    <nav class="d-none d-lg-block flex-grow-1">
+      <ul class="justify-content-center flex-row navbar-nav">
+        <li class="nav-item mx-4">
+          <a
+            routerLink="home"
+            class="nav-link text-blanco"
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item mx-4" *ngIf="user$ | async">
+          <a
+            routerLink="dashboard"
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: false }"
+            class="nav-link text-blanco"
+            >Dashboard</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div *ngIf="user$ | async" class="d-none d-lg-block position-fixed float-right right">
+      <ul class="flex-row navbar-nav">
+        <li class="nav-item mx-3">
+          <a class="nav-link d-flex align-items-center pointer">
+            <span>{{ (user$ | async)?.nombre }} </span>
+            <i class=" ml-1 material-icons "> person_outline </i>
+          </a>
+        </li>
+        <li class="nav-item mx-3 ">
+          <a
+            routerLink="dashboard/settings"
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link d-flex align-items-center text-blanco"
+          >
+            <span> Settings </span>
+            <i class=" ml-1 material-icons "> settings_applications </i>
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link d-flex align-items-center pointer" (click)="logout()">
+            <span> Logout </span>
+            <i class=" ml-1 material-icons"> power_settings_new </i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>

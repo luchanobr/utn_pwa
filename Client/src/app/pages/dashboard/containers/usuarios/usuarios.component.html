@@ -1,0 +1,24 @@
+<mat-table [dataSource]="(usuarios$ | async)?.data" class="mat-elevation-z8">
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let usuario"> {{ usuario.nombre }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+    <mat-cell *matCellDef="let usuario"> {{ usuario.email }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="telefono">
+    <mat-header-cell *matHeaderCellDef> Telefono </mat-header-cell>
+    <mat-cell *matCellDef="let usuario"> {{ usuario.telefono }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+    <mat-cell> Buttons </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnas"></mat-row>
+</mat-table>

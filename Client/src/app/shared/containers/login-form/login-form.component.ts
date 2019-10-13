@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CoreFacade } from '@app/core/core.facade';
-import { Credential } from '@models/index';
+import { Credential } from '@models';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',

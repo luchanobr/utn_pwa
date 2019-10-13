@@ -12,7 +12,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $Client-primary: mat-palette($mat-deep-purple, 800, 400, 900);
-$Client-accent: mat-palette($mat-pink, 400, 300, 500);
+$Client-accent: mat-palette($mat-purple, 200, 100, 300);
 
 // The warn palette is optional (defaults to red).
 $Client-warn: mat-palette($mat-red);
@@ -28,7 +28,7 @@ $Client-theme: mat-light-theme($Client-primary, $Client-accent, $Client-warn);
 /* You can add global styles to this file, and also import other style files */
 
 $primary: #4527a0;
-$secundary: #ec407a;
+$secundary: #ce93d8;
 $success: #00bfa5;
 
 html,
@@ -38,6 +38,10 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.text-blanco {
+  color: white;
 }
 
 .pointer {
@@ -75,17 +79,12 @@ body {
   }
 }
 
-.bg-primary {
-  background-color: $primary;
+.right {
+  right: 2px;
 }
-.bg-success {
-  background-color: $success;
+.active-nav-link {
+  color: $secundary !important;
 }
-
-.text-white {
-  color: white;
-}
-
 .border-primary {
   border: 1px solid $primary;
 }

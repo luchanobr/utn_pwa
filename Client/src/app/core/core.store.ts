@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { User } from './models/user';
+import { User } from '@models';
 
 @Injectable()
 export class CoreStore {
@@ -12,7 +12,7 @@ export class CoreStore {
   setUser(user: User): void {
     this.user$.next(user);
   }
-  getUser(): Observable<User> {
+  get getUser(): Observable<User> {
     return this.user$.asObservable().pipe(distinctUntilChanged());
   }
 }

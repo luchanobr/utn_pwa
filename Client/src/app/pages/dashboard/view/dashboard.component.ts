@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '@models/index';
+import { User } from '@models';
 import { CoreFacade } from '@app/core';
 import { DashboardFacade } from '../dashboard.facade';
 

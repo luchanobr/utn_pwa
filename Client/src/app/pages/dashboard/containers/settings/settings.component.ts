@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '@app/core/models';
 import { CoreFacade } from '@core/index';
-import { DashboardFacade } from '@dashboard/index';
+import { DashboardFacade } from '@app/pages/dashboard/index';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  user: Observable<User>;
+  user$: Observable<User>;
   constructor(private coreFacade: CoreFacade, private dashboardFacade: DashboardFacade) {}
 
   ngOnInit() {
-    this.user = this.coreFacade.getUser();
+    this.user$ = this.coreFacade.getUser;
   }
 }

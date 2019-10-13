@@ -1,15 +1,15 @@
-<ngx-loading-bar [color]="'#ec407a'" [includeSpinner]="false"></ngx-loading-bar>
-<div gdRows="66px auto auto" gdGap="10px" gdAreas="header  |  main |  footer">
-  <app-header gdArea="header" (sidenav)="sidenav.toggle($event)"></app-header>
+<ngx-loading-bar [color]="'#ce93d8'" [includeSpinner]="false"></ngx-loading-bar>
+<div>
+  <app-header (sidenav)="sidenav.toggle($event)"></app-header>
 
-  <mat-drawer-container hasBackdrop="true" gdArea="main">
+  <mat-drawer-container hasBackdrop="true">
     <mat-drawer #sidenav mode="push">
       <app-side-nav></app-side-nav>
     </mat-drawer>
     <mat-drawer-content>
-      <div class="container"><router-outlet></router-outlet></div>
+      <div class="container my-4"><router-outlet></router-outlet></div>
     </mat-drawer-content>
   </mat-drawer-container>
 
-  <app-footer gdArea="footer"></app-footer>
+  <app-footer></app-footer>
 </div>

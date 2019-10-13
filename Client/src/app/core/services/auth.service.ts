@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LoginResponse } from '../models/login-response';
-import { Credential } from '../models';
+import { Credential, LoginResponse } from '@models';
 
 @Injectable()
 export class AuthServices {
