@@ -23,7 +23,7 @@ module.exports = {
 
     findAll: async (req, res, next) => {
         try {
-            const users = await usuariosServices.findAllUser();
+            const users = await usuariosServices.findAllUser(req.query);
             res.status(200).json({ data: users });
         } catch (e) {
             errorHandler(res, e);
