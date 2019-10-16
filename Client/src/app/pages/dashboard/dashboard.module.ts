@@ -10,6 +10,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatCardModule } from "@angular/material/card";
 
 // components
 import {
@@ -38,7 +39,8 @@ import { DashboardStore } from "./dashboard.store";
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ],
   providers: [DashboardFacade, UsuariosServices, DashboardStore]
 })
