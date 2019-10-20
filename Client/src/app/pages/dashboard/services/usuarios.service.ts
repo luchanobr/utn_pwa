@@ -25,4 +25,8 @@ export class UsuariosServices {
   create(data: Usuario) {
     return this.http.post(`${this.url}`, data, this.httpOptions);
   }
+
+  edit(data: Usuario, id){
+    return this.http.put(`${this.url}/${id}`, data, this.httpOptions)
+  }
 }

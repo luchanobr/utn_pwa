@@ -18,7 +18,9 @@ export class UsuarioDialogComponent implements OnInit {
     private dashboardFacade: DashboardFacade
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data.type === "edit" ? this.direccionEdit() : null;
+  }
 
   direccionGroup = data => {
     return new FormGroup({
@@ -56,6 +58,13 @@ export class UsuarioDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  direccionEdit() {
+    this.direcciones.controls.pop();
+    this.data.usuario.direccion.map(direccion =>
+      this.direcciones.push(this.direccionGroup(direccion))
+    );
+  }
+
   get direcciones(): FormArray {
     return this.usuarioForm.get("direccion") as FormArray;
   }
@@ -71,8 +80,10 @@ export class UsuarioDialogComponent implements OnInit {
     this.direcciones.controls.length > 1 ? this.direcciones.controls.splice(event, 1) : null;
   }
 
-  createUsuario(data: Usuario) {
+  postUsuario(data: Usuario) {
     console.log(data);
-    this.dashboardFacade.createUsuario(data);
+    this.data.type === "create"
+      ? this.dashboardFacade.createUsuario(data)
+      : this.dashboardFacade.postUsuario(data, this.data.usuario._id);
   }
 }

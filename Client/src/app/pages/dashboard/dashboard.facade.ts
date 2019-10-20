@@ -35,4 +35,8 @@ export class DashboardFacade {
   createUsuario(data: Usuario) {
     this.usuariosServices.create(data).subscribe(res => console.log(res));
   }
+
+  postUsuario(data: Usuario, id) {
+    this.usuariosServices.edit(data, id).subscribe(res => console.log(res));
+  }
 }

@@ -54,4 +54,12 @@ export class UsuariosComponent implements OnInit {
       }
     });
   }
+  editUsuario(data: Usuario): void {
+    const dialogUsuario = this.dialog.open(UsuarioDialogComponent, {
+      data: {
+        type: "edit",
+        usuario: data
+      }
+    });
+  }
 }
