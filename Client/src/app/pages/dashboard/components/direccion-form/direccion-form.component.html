@@ -1,0 +1,36 @@
+<form [formGroup]="direccionGroup">
+  <mat-form-field class="col-10">
+    <input matInput placeholder="Ingrese su direccion" formControlName="direccion" type="text" />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-10">
+    <input matInput placeholder="Ingrese su numero" formControlName="numero" type="text" />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-10">
+    <input matInput placeholder="Ingrese su piso" formControlName="piso" type="text" />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-10">
+    <input matInput placeholder="Ingrese su localidad" formControlName="localidad" type="text" />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-10">
+    <input matInput placeholder="Ingrese su provincia" formControlName="provincia" type="text" />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-10">
+    <input
+      matInput
+      placeholder="Ingrese su codigo postal"
+      formControlName="codigoPostal"
+      type="text"
+    />
+    <mat-error></mat-error>
+  </mat-form-field>
+  <div class="col-12">
+    <button type="button" mat-flat-button (click)="quitarDireccion()" color="warn">
+      Quitar Dirección <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+  </div>
+</form>

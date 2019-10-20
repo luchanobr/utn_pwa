@@ -11,14 +11,22 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+
+import { MatSelectModule } from "@angular/material/select";
 
 // components
 import {
   UsuariosComponent,
   ProductosComponent,
   ComprasComponent,
-  SettingsComponent
+  SettingsComponent,
+  UsuarioDialogComponent
 } from "@dashboard/containers/index";
+import { DireccionFormComponent } from "@dashboard/index";
 
 // services
 import { UsuariosServices } from "./services";
@@ -30,8 +38,11 @@ import { DashboardStore } from "./dashboard.store";
     UsuariosComponent,
     ProductosComponent,
     ComprasComponent,
-    SettingsComponent
+    SettingsComponent,
+    UsuarioDialogComponent,
+    DireccionFormComponent
   ],
+  entryComponents: [UsuarioDialogComponent],
   imports: [
     AngularCommonModule,
     DashboardRoutingModule,
@@ -40,7 +51,12 @@ import { DashboardStore } from "./dashboard.store";
     MatButtonModule,
     MatIconModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [DashboardFacade, UsuariosServices, DashboardStore]
 })

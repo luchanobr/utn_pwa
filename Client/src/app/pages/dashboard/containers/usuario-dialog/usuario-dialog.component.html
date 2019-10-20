@@ -1,0 +1,104 @@
+<h1 mat-dialog-title class="text-center bg-primary py-3 text-white my-4">Crear Usuario</h1>
+<form [formGroup]="usuarioForm" (ngSubmit)="createUsuario(usuarioForm.value)">
+  <div mat-dialog-content>
+    <div class="row justify-content-center">
+      <mat-form-field class="col-10">
+        <input matInput placeholder="Ingrese su nombre" formControlName="nombre" type="text" />
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-10">
+        <input matInput placeholder="Ingrese su email" formControlName="email" type="email" />
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 15 characters" class="col-10">
+        <input
+          matInput
+          placeholder="Ingrese su password"
+          formControlName="password"
+          type="password"
+        />
+        <mat-hint align="end">{{ usuarioForm.value.password.length }}/15 </mat-hint>
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Max 15 characters" class="col-10">
+        <input matInput placeholder="Ingrese su telefono" formControlName="telefono" type="text" />
+        <mat-hint align="end">{{ usuarioForm.value.password.length }}/15 </mat-hint>
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <div class="d-flex col-12 justify-content-center my-3">
+        <mat-slide-toggle
+          color="primary"
+          class="col-auto mr-5"
+          formControlName="active"
+          value="true"
+        >
+          Activo</mat-slide-toggle
+        >
+        <mat-slide-toggle color="primary" class="col-auto" formControlName="admin" value="true">
+          Admin</mat-slide-toggle
+        >
+      </div>
+
+      <div class="col-12 justify-content-center" *ngIf="usuarioForm.controls.admin.value">
+        <form [formGroup]="permisos" class="justify-content-center d-flex">
+          <mat-form-field class="col-3">
+            <mat-label>Permisos Usuarios</mat-label>
+            <mat-select formControlName="usuarios">
+              <mat-option *ngFor="let permiso of permisosLista" [value]="permiso">
+                {{ permiso }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-label>Permisos Productos</mat-label>
+            <mat-select formControlName="productos">
+              <mat-option *ngFor="let permiso of permisosLista" [value]="permiso">
+                {{ permiso }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-label>Permisos Compras</mat-label>
+            <mat-select formControlName="compras">
+              <mat-option *ngFor="let permiso of permisosLista" [value]="permiso">
+                {{ permiso }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-10 justify-content-between my-3">
+        <button type="button" mat-flat-button (click)="agregarDireccion()" color="primary">
+          Agregar Dirección <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+
+      <ng-container *ngFor="let direccion of direcciones.controls; let i = index">
+        <div class="col-md-5 col-12 mt-3">
+          <h5>Direccion {{ i + 1 }}</h5>
+          <app-direccion-form
+            [direccionGroup]="direccion"
+            [index]="i"
+            (deletDireccion)="quitarDireccion($event)"
+          ></app-direccion-form>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div mat-dialog-actions class="row justify-content-around">
+    <button mat-button (click)="volver()" class="col-md-3 col-12" color="warn">Volver</button>
+    <button
+      mat-flat-button
+      class="bg-success text-white col-12 col-md-3"
+      type="submit"
+      [disabled]="usuarioForm.invalid"
+    >
+      <i class="material-icons md-18">send</i> Send
+    </button>
+  </div>
+</form>
+{{ usuarioForm.value | json }}
+{{ usuarioForm.invalid }}

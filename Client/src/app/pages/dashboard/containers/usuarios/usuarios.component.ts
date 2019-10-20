@@ -6,6 +6,8 @@ import { Paginador } from "../../models/paginador.class";
 import { MatPaginator } from "@angular/material/paginator";
 import { CoreFacade } from "@app/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { MatDialog } from "@angular/material/dialog";
+import { UsuarioDialogComponent } from "../usuario-dialog/usuario-dialog.component";
 @Component({
   selector: "app-usuarios",
   templateUrl: "./usuarios.component.html",
@@ -27,7 +29,11 @@ export class UsuariosComponent implements OnInit {
   expandedUsuario: Usuario | null;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  constructor(private dashboardFacade: DashboardFacade, private coreFacade: CoreFacade) {}
+  constructor(
+    private dashboardFacade: DashboardFacade,
+    private coreFacade: CoreFacade,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.dashboardFacade.fechtUsuarios();
@@ -35,5 +41,17 @@ export class UsuariosComponent implements OnInit {
     this.usuarios$ = this.dashboardFacade.getUsuarios;
     this.isAdmin$ = this.coreFacade.isAdmin;
     this.superAdmin$ = this.coreFacade.isSuperAdmin;
+  }
+
+  crearUsuario(): void {
+    const dialogUsuario = this.dialog.open(UsuarioDialogComponent, {
+      data: {
+        type: "create",
+        usuario: {
+          permisos: {},
+          direcccion: []
+        }
+      }
+    });
   }
 }

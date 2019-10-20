@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 // 3rd party libraries
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -21,7 +22,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { HomeComponent } from '@core/view/home.component';
 import { HeaderComponent, FooterComponent, SideNavComponent } from '@core/containers/index';
 import { LoginFormComponent } from '@shared/containers/login-form/login-form.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 // services
 import { CoreFacade } from '@app/core/core.facade';

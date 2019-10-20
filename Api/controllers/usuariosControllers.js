@@ -10,6 +10,7 @@ const errorHandler = require("../errors/errorHandler");
 module.exports = {
     create: async (req, res, next) => {
         try {
+            console.log(req.body);
             validationResult(req).throw();
             const user = new usuariosModel(req.body);
             const newUser = await usuariosServices.createUser(user);

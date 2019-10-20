@@ -31,4 +31,8 @@ export class DashboardFacade {
   get getPaginador(): Observable<Paginador> {
     return this.dashboardStore.getPaginador;
   }
+
+  createUsuario(data: Usuario) {
+    this.usuariosServices.create(data).subscribe(res => console.log(res));
+  }
 }
