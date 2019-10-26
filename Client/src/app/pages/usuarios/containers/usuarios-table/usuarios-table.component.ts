@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { UsuariosFacade } from "@usuarios/index";
+import { UsuariosFacade } from "@usuarios/usuarios.facade";
 import { Observable } from "rxjs";
 import { Usuario, Paginador } from "@models";
 
 import { MatPaginator } from "@angular/material/paginator";
 import { CoreFacade } from "@app/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { MatDialog } from "@angular/material/dialog";
-import { ConfirmModalComponent } from "@app/shared/containers/confirm-modal/confirm-modal.component";
+import { ModalFacade } from "@usuarios/modal.facade";
+
 @Component({
   selector: "app-usuarios-table",
   templateUrl: "./usuarios-table.component.html",
@@ -21,63 +21,58 @@ import { ConfirmModalComponent } from "@app/shared/containers/confirm-modal/conf
   ]
 })
 export class UsuariosTableComponent implements OnInit {
-  usuarios$: Observable<Array<Usuario>> | null;
-  paginador$: Observable<Paginador> | null;
   columnas = ["nombre", "email", "telefono", "acciones"];
-  isAdmin$: Observable<boolean>;
-  superAdmin$: Observable<boolean>;
   expandedUsuario: Usuario | null;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(
     private usuariosFacade: UsuariosFacade,
     private coreFacade: CoreFacade,
-    public dialog: MatDialog
+    private modalFacade: ModalFacade
   ) {}
 
   ngOnInit() {
     this.usuariosFacade.fechtUsuarios();
-    this.paginador 
-    this.usuarios$ = this.usuariosFacade.getUsuarios;
-    this.isAdmin$ = this.coreFacade.isAdmin;
-    this.superAdmin$ = this.coreFacade.isSuperAdmin;
   }
 
-  get paginador(): Observable<Paginador>{
-    return this.usuariosFacade.getPaginador
+  get paginador$(): Observable<Paginador> {
+    return this.usuariosFacade.getPaginador;
   }
 
-  /*   crearUsuario(): void {
-    const dialogUsuario = this.dialog.open(UsuarioDialogComponent, {
-      data: {
-        type: "create",
-        usuario: {
-          permisos: {},
-          direcccion: []
-        }
-      }
+  get usuarios$(): Observable<Array<Usuario>> {
+    return this.usuariosFacade.getUsuarios;
+  }
+
+  get isAdmin$(): Observable<boolean> {
+    return this.coreFacade.isAdmin;
+  }
+
+  get superAdmin$(): Observable<boolean> {
+    return this.coreFacade.isSuperAdmin;
+  }
+
+  crearUsuario() {
+    this.modalFacade.usuarioModal("create");
+  }
+
+  editUsuario(usuario: Usuario) {
+    this.modalFacade.usuarioModal("edit");
+    this.usuariosFacade.editUsuario(usuario);
+  }
+
+  removeUsuario(usuario: Usuario) {
+    this.modalFacade.confirmModal({
+      type: "delete",
+      titulo: "borrar usuario",
+      subtitulo: "Confirma borrar el siguiente usuario:",
+      usuario: usuario
     });
-  } */
-  /*  editUsuario(data: Usuario): void {
-    const dialogUsuario = this.dialog.open(UsuarioDialogComponent, {
-      data: {
-        type: "edit",
-        usuario: data
-      }
-    });
-    dialogUsuario.afterClosed().subscribe(data => {
-      console.log(data);
-      this.dashboardFacade.fechtUsuarios();
-    });
-  } */
-  deleteUsuario(usuario: Usuario): void {
-    const dialogConfirm = this.dialog.open(ConfirmModalComponent, {
-      data: {
-        type: "delete",
-        titulo: "borrar usuario",
-        subtitulo: "Confirma borrar el siguiente usuario:",
-        usuario: usuario
-      }
-    });
+  }
+
+  pageChange($event) {
+    let data = {
+      page: $event.pageIndex + 1
+    };
+    this.usuariosFacade.fechtUsuarios(data);
   }
 }

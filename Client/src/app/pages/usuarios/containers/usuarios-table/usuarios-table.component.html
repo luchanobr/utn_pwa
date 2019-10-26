@@ -24,7 +24,7 @@
         <button
           mat-icon-button
           color="warn"
-          (click)="deleteUsuario(usuario)"
+          (click)="removeUsuario(usuario)"
           [disabled]="superAdmin | async"
         >
           <mat-icon>delete_outline</mat-icon>
@@ -86,7 +86,9 @@
 
   <mat-paginator
     class="col-12"
-    [length]="(paginador | async)?.totalDocs"
-    [pageSize]="(usuarios$ | async)?.length"
+    [length]="(paginador$ | async)?.totalDocs"
+    [pageSize]="10"
+    (page)="pageChange($event)"
+    hasNextPage="false"
   ></mat-paginator>
 </div>

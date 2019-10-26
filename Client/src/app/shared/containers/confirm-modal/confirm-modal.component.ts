@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Output, EventEmitter, Optional } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { UsuariosFacade } from "@usuarios/index";
+import { UsuariosFacade } from "@usuarios/usuarios.facade";
 
 @Component({
   selector: "app-confirm-modal",

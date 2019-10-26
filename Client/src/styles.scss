@@ -130,3 +130,10 @@ tr.example-element-row:not(.example-expanded-row):active {
   overflow: hidden;
   display: flex;
 }
+
+.mat-drawer-container {
+  background-color: white;
+}
+.mat-dialog-container {
+  padding: 10px !important;
+}

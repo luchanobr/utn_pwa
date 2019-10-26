@@ -42,7 +42,7 @@ const usuariosSchema = new schema(
         },
         active: {
             type: Boolean,
-            default: 0
+            default: false
         },
         password: {
             type: String,
@@ -58,7 +58,7 @@ const usuariosSchema = new schema(
         },
         admin: {
             type: Boolean,
-            default: 0
+            default: false
         },
         permisos: {
             type: permisosModel,

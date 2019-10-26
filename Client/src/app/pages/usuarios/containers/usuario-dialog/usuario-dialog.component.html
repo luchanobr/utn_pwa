@@ -1,5 +1,5 @@
 <h3 mat-dialog-title class="text-center bg-primary py-3 text-white my-4">Crear Usuario</h3>
-<form [formGroup]="usuarioForm" (ngSubmit)="postUsuario(usuarioForm.value)">
+<form [formGroup]="usuarioForm" (ngSubmit)="submitUsuario(usuarioForm.value)">
   <div mat-dialog-content>
     <div class="row justify-content-center">
       <mat-form-field class="col-10">
@@ -19,12 +19,12 @@
           formControlName="password"
           type="password"
         />
-        <mat-hint align="end">{{ usuarioForm.value.password.length }}/15 </mat-hint>
+        <mat-hint align="end">{{ usuarioForm.value.password?.length }}/15 </mat-hint>
         <mat-error></mat-error>
       </mat-form-field>
       <mat-form-field hintLabel="Max 15 characters" class="col-10">
         <input matInput placeholder="Ingrese su telefono" formControlName="telefono" type="text" />
-        <mat-hint align="end">{{ usuarioForm.value.password.length }}/15 </mat-hint>
+        <mat-hint align="end">{{ usuarioForm.value.password?.length }}/15 </mat-hint>
         <mat-error></mat-error>
       </mat-form-field>
 
@@ -43,7 +43,7 @@
       </div>
 
       <div class="col-12 justify-content-center" *ngIf="usuarioForm.controls.admin.value">
-        <form [formGroup]="permisos" class="justify-content-center d-flex">
+        <form [formGroup]="usuarioForm.controls.permisos" class="justify-content-center d-flex">
           <mat-form-field class="col-3">
             <mat-label>Permisos Usuarios</mat-label>
             <mat-select formControlName="usuarios">
@@ -76,7 +76,9 @@
         </button>
       </div>
 
-      <ng-container *ngFor="let direccion of direcciones.controls; let i = index">
+      <ng-container
+        *ngFor="let direccion of usuarioForm.controls.direccion.controls; let i = index"
+      >
         <div class="col-md-5 col-12 mt-3">
           <h5>Direccion {{ i + 1 }}</h5>
           <app-direccion-form
@@ -102,3 +104,4 @@
     </button>
   </div>
 </form>
+{{ usuarioForm.value | json }}

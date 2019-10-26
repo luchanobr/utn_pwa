@@ -18,8 +18,12 @@ export class UsuariosServices {
 
   url: string = `${environment.apiUrl}usuarios`;
 
-  findAll() {
-    return this.http.get<UsuariosApi>(`${this.url}`, this.httpOptions);
+  findAll(data?) {
+    return this.http.get<UsuariosApi>(`${this.url}`, {
+      params: data,
+      headers: new HttpHeaders({ "Content-type": "application/json" }),
+      withCredentials: true
+    });
   }
 
   create(data: Usuario) {

@@ -1,6 +1,8 @@
-<span>
-  <ng-container [ngSwitch]="data.type">
-    <mat-icon *ngSwitchCase="'success'"> check_circle_outline</mat-icon>
-  </ng-container>
-  {{ data.msg }}
+<span class="alert d-flex justify-content-center mb-0 " [ngClass]="sytleAlert">
+  <div class="col justify-content-center d-flex mb-0">
+    <div [ngSwitch]="data.type">
+      <mat-icon *ngSwitchCase="'success'"> check_circle_outline</mat-icon>
+    </div>
+    <p>{{ data.msg }}</p>
+  </div>
 </span>

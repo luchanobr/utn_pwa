@@ -25,8 +25,12 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+
+//services
 import { UsuariosFacade } from "./usuarios.facade";
 import { UsuariosServices } from "./services";
+import { UsuariosStore } from "./usuarios.store";
+import { ModalFacade } from "./modal.facade";
 
 @NgModule({
   declarations: [
@@ -53,6 +57,6 @@ import { UsuariosServices } from "./services";
     MatSnackBarModule
   ],
   exports: [],
-  providers: [UsuariosFacade, UsuariosServices]
+  providers: [UsuariosFacade, UsuariosServices, UsuariosStore, ModalFacade]
 })
 export class UsuariosModule {}
