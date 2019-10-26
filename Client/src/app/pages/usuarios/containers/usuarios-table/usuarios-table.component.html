@@ -21,7 +21,12 @@
         <button mat-icon-button color="primary" (click)="editUsuario(usuario)">
           <mat-icon>create</mat-icon>
         </button>
-        <button mat-icon-button color="warn" [disabled]="superAdmin | async">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteUsuario(usuario)"
+          [disabled]="superAdmin | async"
+        >
           <mat-icon>delete_outline</mat-icon>
         </button>
       </td>
@@ -81,7 +86,7 @@
 
   <mat-paginator
     class="col-12"
-    [length]="(paginador$ | async)?.totalDocs"
+    [length]="(paginador | async)?.totalDocs"
     [pageSize]="(usuarios$ | async)?.length"
   ></mat-paginator>
 </div>

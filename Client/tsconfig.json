@@ -21,7 +21,10 @@
       "@guards": ["app/core/guards"],
       "@services": ["app/core/services"],
       "@models": ["app/core/models"],
-      "@dashboard/*": ["app/pages/dashboard/*"]
+      "@dashboard/*": ["app/pages/dashboard/*"],
+      "@usuarios/*": ["app/pages/usuarios/*"],
+      "@productos/*": ["app/pages/productos/*"],
+      "@compras/*": ["app/pages/compras/*"]
     }
   },
   "angularCompilerOptions": {

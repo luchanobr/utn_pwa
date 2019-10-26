@@ -1,8 +1,16 @@
 import { NgModule } from "@angular/core";
+
+// Components
+import {
+  UsuarioDialogComponent,
+  UsuariosAdminComponent,
+  UsuariosTableComponent
+} from "./containers";
+import { DireccionFormComponent } from "./components";
+
+// Modules
+import { UsuariosRoutingModule } from "./usuarios-routing.module";
 import { AngularCommonModule } from "@app/shared";
-import { DashboardComponent } from "./view/dashboard.component";
-import { DashboardRoutingModule } from "./dashboard-routing.module";
-import { DashboardFacade } from "./dashboard.facade";
 
 // angular material
 import { MatTabsModule } from "@angular/material/tabs";
@@ -17,34 +25,20 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-
-// components
-import {
-  ProductosComponent,
-  ComprasComponent,
-  SettingsComponent
-} from "@dashboard/containers/index";
-
-import { ConfirmModalComponent } from "@shared/containers/confirm-modal/confirm-modal.component";
-import { AlertComponent } from "@app/shared/containers/alert/alert.component";
-
-// services
-import { UsuariosServices } from "../usuarios/services";
-import { DashboardStore } from "./dashboard.store";
+import { UsuariosFacade } from "./usuarios.facade";
+import { UsuariosServices } from "./services";
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    ProductosComponent,
-    ComprasComponent,
-    SettingsComponent,
-    ConfirmModalComponent,
-    AlertComponent
+    UsuariosAdminComponent,
+    UsuarioDialogComponent,
+    UsuariosTableComponent,
+    DireccionFormComponent
   ],
-  entryComponents: [ConfirmModalComponent, AlertComponent],
+  entryComponents: [UsuarioDialogComponent],
   imports: [
+    UsuariosRoutingModule,
     AngularCommonModule,
-    DashboardRoutingModule,
     MatTabsModule,
     MatTableModule,
     MatButtonModule,
@@ -58,6 +52,7 @@ import { DashboardStore } from "./dashboard.store";
     MatSelectModule,
     MatSnackBarModule
   ],
-  providers: [DashboardFacade, UsuariosServices, DashboardStore]
+  exports: [],
+  providers: [UsuariosFacade, UsuariosServices]
 })
-export class DashboardModule {}
+export class UsuariosModule {}

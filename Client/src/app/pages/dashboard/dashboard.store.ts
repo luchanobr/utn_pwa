@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Usuario } from "@models";
 import { distinctUntilChanged } from "rxjs/operators";
-import { Paginador } from "./models/paginador.class";
+import { Paginador } from "../../core/models/paginador.class";
 
 @Injectable()
 export class DashboardStore {

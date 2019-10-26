@@ -1,0 +1,6 @@
+<span>
+  <ng-container [ngSwitch]="data.type">
+    <mat-icon *ngSwitchCase="'success'"> check_circle_outline</mat-icon>
+  </ng-container>
+  {{ data.msg }}
+</span>

@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Usuario, Direccion } from "@models";
+import { Usuario } from "@models";
 import { FormBuilder, Validators, FormGroup, FormControl, FormArray } from "@angular/forms";
-import { DashboardFacade } from "../../dashboard.facade";
+import { UsuariosFacade } from "@usuarios/index";
 
 @Component({
   selector: "app-usuario-dialog",
@@ -15,11 +15,18 @@ export class UsuarioDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<UsuarioDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { type: string; usuario?: Usuario },
     private fb: FormBuilder,
-    private dashboardFacade: DashboardFacade
+    private usuariosFacade: UsuariosFacade
   ) {}
 
   ngOnInit() {
     this.data.type === "edit" ? this.direccionEdit() : null;
+    this.usuarioForm.get("admin").valueChanges.subscribe(value => {
+      value === false
+        ? this.usuarioForm
+            .get("permisos")
+            .patchValue({ usuarios: null, productos: null, compras: null })
+        : null;
+    });
   }
 
   direccionGroup = data => {
@@ -83,7 +90,7 @@ export class UsuarioDialogComponent implements OnInit {
   postUsuario(data: Usuario) {
     console.log(data);
     this.data.type === "create"
-      ? this.dashboardFacade.createUsuario(data)
-      : this.dashboardFacade.postUsuario(data, this.data.usuario._id);
+      ? this.usuariosFacade.createUsuario(data)
+      : this.usuariosFacade.postUsuario(data, this.data.usuario._id, this.dialogRef.id);
   }
 }

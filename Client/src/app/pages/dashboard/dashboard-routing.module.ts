@@ -1,31 +1,30 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './view/dashboard.component';
-import { UsuariosComponent } from './containers/usuarios/usuarios.component';
-import { ProductosComponent } from './containers/productos/productos.component';
-import { ComprasComponent } from './containers/compras/compras.component';
-import { SettingsComponent } from './containers/settings/settings.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { DashboardComponent } from "./view/dashboard.component";
+import { ProductosComponent } from "./containers/productos/productos.component";
+import { ComprasComponent } from "./containers/compras/compras.component";
+import { SettingsComponent } from "./containers/settings/settings.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: DashboardComponent,
     data: {},
     children: [
       {
-        path: 'usuarios',
-        component: UsuariosComponent
+        path: "usuarios",
+        loadChildren: () => import("../usuarios/usuarios.module").then(mod => mod.UsuariosModule)
       },
       {
-        path: 'productos',
+        path: "productos",
         component: ProductosComponent
       },
       {
-        path: 'compras',
+        path: "compras",
         component: ComprasComponent
       },
       {
-        path: 'settings',
+        path: "settings",
         component: SettingsComponent
       }
     ]

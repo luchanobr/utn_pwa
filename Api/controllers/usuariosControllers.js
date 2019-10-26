@@ -35,6 +35,7 @@ module.exports = {
         try {
             validationResult(req).throw();
             const id = req.params.id;
+            req.body.password = brypt.hashPassword(req.body.password);
             const saveUser = req.body;
             const updatedUser = await usuariosServices.updateOne(id, saveUser);
             res.status(200).json({ data: updatedUser });
@@ -59,7 +60,7 @@ module.exports = {
             validationResult(req).throw();
             let id = req.params.id;
             let deleteUser = await usuariosModel.findByIdAndDelete(id);
-            res.status(203).json({ data: deleteUser });
+            res.status(204).json({ data: deleteUser });
         } catch (e) {
             errorHandler(res, e);
         }
@@ -81,7 +82,7 @@ module.exports = {
             validationResult(req).throw();
             const userId = jwt.verifyToken(req.params.token);
             const user = await usuariosServices.activeOne(userId.id);
-            if (user) res.status(200).json({ message: "Usuario activado" });
+            user ? res.status(200).json({ message: "Usuario activado" }) : null;
         } catch (e) {
             errorHandler(res, e);
         }

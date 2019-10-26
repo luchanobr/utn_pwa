@@ -1,37 +1,43 @@
 // angular core and common modules
-import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule, Optional, SkipSelf, ModuleWithProviders } from "@angular/core";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 // modules
-import { AngularCommonModule } from '@shared/index';
+import { AngularCommonModule } from "@shared/index";
 
 //angular material
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 // 3rd party libraries
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
+import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+import { LoadingBarModule } from "@ngx-loading-bar/core";
 
 // components
-import { HomeComponent } from '@core/view/home.component';
-import { HeaderComponent, FooterComponent, SideNavComponent } from '@core/containers/index';
-import { LoginFormComponent } from '@shared/containers/login-form/login-form.component';
-
+import { HomeComponent } from "@core/view/home.component";
+import { HeaderComponent, FooterComponent, SideNavComponent } from "@core/containers/index";
+import { LoginFormComponent } from "@shared/containers/login-form/login-form.component";
 
 // services
-import { CoreFacade } from '@app/core/core.facade';
-import { AuthInterceptorService, AuthServices } from '@services';
-import { CoreStore } from '@core/core.store';
-import { AuthGuard } from './guards/auth.guard';
+import { CoreFacade } from "@app/core/core.facade";
+import { AuthInterceptorService, AuthServices } from "@services";
+import { CoreStore } from "@core/core.store";
+import { AuthGuard } from "./guards/auth.guard";
 
 @NgModule({
-  declarations: [HomeComponent, HeaderComponent, FooterComponent, SideNavComponent, LoginFormComponent],
+  declarations: [
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    SideNavComponent,
+    LoginFormComponent
+  ],
   imports: [
     AngularCommonModule,
     LoadingBarHttpClientModule,
@@ -42,7 +48,8 @@ import { AuthGuard } from './guards/auth.guard';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   exports: [
     LoadingBarHttpClientModule,
@@ -56,13 +63,14 @@ import { AuthGuard } from './guards/auth.guard';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('CoreModule ya fue importado');
+      throw new Error("CoreModule ya fue importado");
     }
   }
   static forRoot(): ModuleWithProviders {

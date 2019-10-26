@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>{{ data.titulo }}</h3>
+<div class="row" mat-dialog-content>
+  <div class="col">
+    <h5>{{ data.subtitulo }}</h5>
+    <p>
+      {{ data.usuario._id }}
+      {{ data.usuario.nombre }}
+      {{ data.usuario.email }}
+    </p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" (click)="volver()">No</button>
+  <button mat-button (click)="confirmar()" color="warn">Sí</button>
+</div>

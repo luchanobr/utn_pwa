@@ -182,8 +182,8 @@ module.exports = {
 
     checkDireccion: alphanumeric => {
         return body(alphanumeric)
-            .isLength({ min: 3, max: 20 })
-            .withMessage("La direccion debe tener entre 3 y 20 caracteres de largo.")
+            .isLength({ min: 3, max: 30 })
+            .withMessage("La direccion debe tener entre 3 y 30 caracteres de largo.")
             .escape();
     },
     checkPiso: alphanumeric => {

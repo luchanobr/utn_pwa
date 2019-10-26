@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '@models';
-import { CoreFacade } from '@app/core';
-import { DashboardFacade } from '../dashboard.facade';
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { User } from "@models";
+import { CoreFacade } from "@app/core";
+import { DashboardFacade } from "../dashboard.facade";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
   navLinks: Array<string>;
@@ -15,6 +15,6 @@ export class DashboardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.navLinks = ['usuarios', 'productos', 'compras', 'settings'];
+    this.navLinks = ["usuarios", "productos", "compras", "settings"];
   }
 }
