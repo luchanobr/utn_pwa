@@ -18,7 +18,7 @@ export class ConfirmModalComponent implements OnInit {
   ngOnInit() {}
 
   confirmar() {
-    this.usuariosFacade.deleteUsuario(this.data.usuario._id);
+    this.usuariosFacade.deleteUsuario(this.data.usuario._id, this.dialogRef.id);
   }
 
   volver(): void {

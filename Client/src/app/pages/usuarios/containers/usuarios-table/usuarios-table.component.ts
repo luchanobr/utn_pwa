@@ -21,7 +21,7 @@ import { ModalFacade } from "@usuarios/modal.facade";
   ]
 })
 export class UsuariosTableComponent implements OnInit {
-  columnas = ["nombre", "email", "telefono", "acciones"];
+  columnas = ["acciones", "nombre", "email", "telefono"];
   expandedUsuario: Usuario | null;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -56,7 +56,7 @@ export class UsuariosTableComponent implements OnInit {
   }
 
   editUsuario(usuario: Usuario) {
-    this.modalFacade.usuarioModal("edit");
+    this.modalFacade.usuarioModal({ type: "edit", usuario: usuario });
     this.usuariosFacade.editUsuario(usuario);
   }
 

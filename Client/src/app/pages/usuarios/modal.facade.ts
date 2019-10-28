@@ -7,11 +7,9 @@ import { Usuario } from "@app/core/models";
 export class ModalFacade {
   constructor(private dialogServices: MatDialog) {}
 
-  usuarioModal(type) {
+  usuarioModal(data) {
     const dialogUsuario = this.dialogServices.open(UsuarioDialogComponent, {
-      data: {
-        type: type
-      }
+      data: data
     });
   }
 

@@ -53,10 +53,11 @@ export class UsuariosFacade {
       this.dialogServices.getDialogById(dialog).close();
       this.usuarioForm.reset();
       this.snackbar.openFromComponent(AlertComponent, {
-        duration: 200500,
-        panelClass: ["mt-0", "p-0", "bg-success"],
+        duration: 2500,
+        panelClass: ["mt-1", "p-0", "bg-success"],
         data: { msg: "Usuario creado correctamente", type: "success" }
       });
+      this.fechtUsuarios();
     });
   }
 
@@ -65,15 +66,24 @@ export class UsuariosFacade {
       this.dialogServices.getDialogById(dialog).close();
       this.usuarioForm.reset();
       this.snackbar.openFromComponent(AlertComponent, {
-        duration: 30000,
-        panelClass: ["mt-0", "p-0", "bg-success"],
+        duration: 2500,
+        panelClass: ["mt-1", "p-0", "bg-success"],
         data: { msg: "Usuario editado correctamente", type: "success" }
       });
+      this.fechtUsuarios();
     });
   }
 
-  deleteUsuario(id) {
-    this.usuariosServices.delete(id).subscribe(res => console.info(res));
+  deleteUsuario(id, dialog) {
+    this.usuariosServices.delete(id).subscribe(res => {
+      this.dialogServices.getDialogById(dialog).close();
+      this.snackbar.openFromComponent(AlertComponent, {
+        duration: 2500,
+        panelClass: ["mt-1", "p-0", "bg-success"],
+        data: { msg: "Usuario desactivado correctamente", type: "success" }
+      });
+      this.fechtUsuarios();
+    });
   }
 
   editUsuario(usuario: Usuario): void {

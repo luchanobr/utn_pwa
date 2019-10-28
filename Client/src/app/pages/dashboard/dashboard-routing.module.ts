@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+
+//components
 import { DashboardComponent } from "./view/dashboard.component";
-import { ProductosComponent } from "./containers/productos/productos.component";
 import { ComprasComponent } from "./containers/compras/compras.component";
 import { SettingsComponent } from "./containers/settings/settings.component";
 
@@ -17,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: "productos",
-        component: ProductosComponent
+        loadChildren: () => import("../productos/productos.module").then(mod => mod.ProductosModule)
       },
       {
         path: "compras",

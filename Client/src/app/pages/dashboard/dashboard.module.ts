@@ -19,11 +19,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 // components
-import {
-  ProductosComponent,
-  ComprasComponent,
-  SettingsComponent
-} from "@dashboard/containers/index";
+import { ComprasComponent, SettingsComponent } from "@dashboard/containers/index";
 
 import { ConfirmModalComponent } from "@shared/containers/confirm-modal/confirm-modal.component";
 import { AlertComponent } from "@app/shared/containers/alert/alert.component";
@@ -35,7 +31,6 @@ import { DashboardStore } from "./dashboard.store";
 @NgModule({
   declarations: [
     DashboardComponent,
-    ProductosComponent,
     ComprasComponent,
     SettingsComponent,
     ConfirmModalComponent,

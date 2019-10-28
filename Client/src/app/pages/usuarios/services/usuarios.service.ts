@@ -18,7 +18,7 @@ export class UsuariosServices {
 
   url: string = `${environment.apiUrl}usuarios`;
 
-  findAll(data?) {
+  findAll(data = { page: "1" }) {
     return this.http.get<UsuariosApi>(`${this.url}`, {
       params: data,
       headers: new HttpHeaders({ "Content-type": "application/json" }),

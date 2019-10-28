@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Injector } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Usuario, Direccion } from "@models";
+import { Usuario } from "@models";
 import { FormGroup } from "@angular/forms";
 import { UsuariosFacade } from "@usuarios/usuarios.facade";
 
@@ -14,7 +14,7 @@ export class UsuarioDialogComponent implements OnInit {
   usuarioForm: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<UsuarioDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { type: string },
+    @Inject(MAT_DIALOG_DATA) public data: { type: string; usuario: Usuario },
     private injector: Injector
   ) {}
 
@@ -37,6 +37,8 @@ export class UsuarioDialogComponent implements OnInit {
   submitUsuario(usuario: Usuario) {
     this.data.type === "create"
       ? this.injector.get(UsuariosFacade).postUsuario(usuario, this.dialogRef.id)
-      : this.injector.get(UsuariosFacade).putUsuario(usuario, usuario._id, this.dialogRef.id);
+      : this.injector
+          .get(UsuariosFacade)
+          .putUsuario(usuario, this.data.usuario._id, this.dialogRef.id);
   }
 }
