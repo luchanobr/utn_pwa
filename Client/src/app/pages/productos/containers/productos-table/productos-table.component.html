@@ -1,0 +1,87 @@
+<div class="mat-elevation-z8 mt-3 border border-primary row">
+  <table mat-table [dataSource]="productos$ | async" class="col-12" multiTemplateDataRows>
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let producto">{{ producto.nombre }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let producto">{{ producto.precio | currency }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef>Stock</th>
+      <td mat-cell *matCellDef="let producto">{{ producto.stock }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones" *ngIf="isAdmin$ | async">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let producto">
+        <button mat-icon-button color="primary" (click)="editproducto(producto)">
+          <mat-icon>create</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeproducto(producto)"
+          [disabled]="superAdmin | async"
+        >
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="agregar-producto">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="columnas.length">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="crearproducto()"
+          [disabled]="superAdmin | async"
+        >
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let producto" [attr.colspan]="columnas.length">
+        <div
+          class="example-element-detail"
+          [@detailExpand]="producto == expandedproducto ? 'expanded' : 'collapsed'"
+        >
+          <mat-card class="w-100 row">
+            <span class="col-12"
+              >ID:{{ producto._id }} Categoria:{{ producto.categoria.categoria }} Activo:{{
+                producto.active
+              }}
+              Destacado : {{ producto.destacado }}
+            </span>
+            <p>Descripcion: {{ producto.descripcion }}</p>
+          </mat-card>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['agregar-producto']"
+      class="example-second-header-row"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let producto; columns: columnas"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedproducto === producto"
+      (click)="expandedproducto = expandedproducto === producto ? null : producto"
+    ></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+
+  <mat-paginator
+    class="col-12"
+    [length]="(paginador$ | async)?.totalDocs"
+    [pageSize]="10"
+    (page)="pageChange($event)"
+  ></mat-paginator>
+</div>

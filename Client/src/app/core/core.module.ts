@@ -26,7 +26,7 @@ import { LoginFormComponent } from "@shared/containers/login-form/login-form.com
 
 // services
 import { CoreFacade } from "@app/core/core.facade";
-import { AuthInterceptorService, AuthServices } from "@services";
+import { AuthInterceptorService, AuthServices, ProductosService } from "@services";
 import { CoreStore } from "@core/core.store";
 import { AuthGuard } from "./guards/auth.guard";
 
@@ -80,6 +80,7 @@ export class CoreModule {
         CoreFacade,
         CoreStore,
         AuthServices,
+        ProductosService,
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
         AuthGuard
       ]

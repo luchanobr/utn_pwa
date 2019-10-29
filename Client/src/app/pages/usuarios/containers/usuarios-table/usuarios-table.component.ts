@@ -6,7 +6,7 @@ import { Usuario, Paginador } from "@models";
 import { MatPaginator } from "@angular/material/paginator";
 import { CoreFacade } from "@app/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { ModalFacade } from "@usuarios/modal.facade";
+import { ModalFacade } from "@app/pages/usuarios/modal.facade";
 
 @Component({
   selector: "app-usuarios-table",
