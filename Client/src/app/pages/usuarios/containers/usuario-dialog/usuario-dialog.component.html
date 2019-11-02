@@ -76,9 +76,7 @@
         </button>
       </div>
 
-      <ng-container
-        *ngFor="let direccion of usuarioForm.controls.direccion.controls; let i = index"
-      >
+      <ng-container *ngFor="let direccion of usuarioForm.get('direccion').controls; let i = index">
         <div class="col-md-5 col-12 mt-3">
           <h5>Direccion {{ i + 1 }}</h5>
           <app-direccion-form

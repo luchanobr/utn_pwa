@@ -40,4 +40,20 @@ export class ProductosFacade {
     precio: [this.producto.precio, [Validators.required]],
     stock: [this.producto.stock, [Validators.required]]
   });
+
+  setProducto(producto: Producto) {
+    this.productoForm.patchValue(producto);
+  }
+
+  createProducto(data: Producto, dialog) {
+    this.productosService.create(data).subscribe(res => console.log(res));
+  }
+
+  editProducto(data: Producto, id, dialog) {
+    this.productosService.edit(data, id).subscribe(res => console.log(res));
+  }
+
+  deleteProducto(id) {
+    this.productosService.delete(id).subscribe(res => console.log(res));
+  }
 }

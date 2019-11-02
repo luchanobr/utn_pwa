@@ -24,4 +24,16 @@ export class ProductosService {
       withCredentials: true
     });
   }
+
+  create(data: Producto) {
+    return this.http.post(this.url, data, this.httpOptions);
+  }
+
+  edit(data: Producto, id) {
+    return this.http.put(`${this.url}/${id}`, data, this.httpOptions);
+  }
+
+  delete(id) {
+    return this.http.delete(`${this.url}/${id}`, this.httpOptions);
+  }
 }

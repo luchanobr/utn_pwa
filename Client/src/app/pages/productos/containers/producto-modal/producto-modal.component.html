@@ -1,0 +1,72 @@
+<h3 mat-dialog-title class="text-center bg-primary py-3 text-white my-4">Crear Producto</h3>
+<form [formGroup]="productoForm" (ngSubmit)="submitProducto(productoForm.value)">
+  <div mat-dialog-content>
+    <div class="row justify-content-center">
+      <mat-form-field class="col-10">
+        <input
+          matInput
+          placeholder="Ingrese el nombre del producto"
+          formControlName="nombre"
+          type="text"
+        />
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-10">
+        <textarea
+          matInput
+          placeholder="Ingrese la descripción"
+          formControlName="descripcion"
+        ></textarea>
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-10">
+        <input
+          matInput
+          placeholder="Ingrese la url de la imagen"
+          formControlName="img"
+          type="url"
+        />
+        <mat-error></mat-error>
+      </mat-form-field>
+
+      <div class="d-flex col-12 justify-content-center my-3">
+        <mat-slide-toggle
+          color="primary"
+          class="col-auto mr-5"
+          formControlName="active"
+          value="true"
+        >
+          Activo</mat-slide-toggle
+        >
+        <mat-slide-toggle color="primary" class="col-auto" formControlName="destacado" value="true">
+          Destacado</mat-slide-toggle
+        >
+      </div>
+
+      <mat-form-field class="col-10">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoria">
+          <mat-option *ngFor="let categoria of categorias$" [value]="categoria">
+            {{ categoria.categoria }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions class="row justify-content-around">
+    <button mat-button type="button" (click)="volver()" class="col-md-3 col-12" color="warn">
+      Volver
+    </button>
+    <button
+      mat-flat-button
+      class="bg-success text-white col-12 col-md-3"
+      type="submit"
+      [disabled]="productoForm.invalid"
+    >
+      <i class="material-icons md-18">send</i> Send
+    </button>
+  </div>
+</form>
+{{ productoForm.value | json }}

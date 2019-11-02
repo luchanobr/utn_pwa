@@ -141,5 +141,6 @@ export class UsuariosFacade {
 
   quitarDireccion(index: number): void {
     this.direcciones.controls.length > 1 ? this.direcciones.controls.splice(index, 1) : null;
+    this.usuarioForm.patchValue({ direccion: this.direcciones.controls });
   }
 }

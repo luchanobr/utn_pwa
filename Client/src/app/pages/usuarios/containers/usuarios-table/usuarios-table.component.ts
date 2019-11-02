@@ -52,7 +52,7 @@ export class UsuariosTableComponent implements OnInit {
   }
 
   crearUsuario() {
-    this.modalFacade.usuarioModal("create");
+    this.modalFacade.usuarioModal({ type: "create" });
   }
 
   editUsuario(usuario: Usuario) {

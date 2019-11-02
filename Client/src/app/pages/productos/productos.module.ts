@@ -3,10 +3,12 @@ import { ProductosRoutingModule } from "./productos-routing.module";
 //servicios
 import { ProductosStore } from "./productos.store";
 import { ProductosFacade } from "./productos.facade";
+import { ModalFacade } from "./modalFacade";
+import { CategoriaService } from "../services";
 
 //componentes
 import { ProductosAdminComponent } from "./view/productos-admin.component";
-import { ProductosTableComponent } from "./containers";
+import { ProductosTableComponent, ProductoModalComponent } from "./containers";
 
 //modulos
 import { AngularCommonModule } from "@app/shared";
@@ -26,7 +28,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
-  declarations: [ProductosAdminComponent, ProductosTableComponent],
+  declarations: [ProductosAdminComponent, ProductosTableComponent, ProductoModalComponent],
+  entryComponents: [ProductoModalComponent],
   imports: [
     ProductosRoutingModule,
     AngularCommonModule,
@@ -44,6 +47,6 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatSnackBarModule
   ],
   exports: [],
-  providers: [ProductosStore, ProductosFacade]
+  providers: [ProductosStore, ProductosFacade, ModalFacade, CategoriaService]
 })
 export class ProductosModule {}

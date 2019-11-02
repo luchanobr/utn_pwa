@@ -5,6 +5,7 @@ import { ProductosFacade } from "../../productos.facade";
 import { Producto } from "@models";
 import { Observable } from "rxjs";
 import { CoreFacade } from "@core/core.facade";
+import { ModalFacade } from "../../modalFacade";
 @Component({
   selector: "app-productos-table",
   templateUrl: "./productos-table.component.html",
@@ -18,10 +19,14 @@ import { CoreFacade } from "@core/core.facade";
 })
 export class ProductosTableComponent implements OnInit {
   columnas = ["acciones", "nombre", "precio", "stock"];
-  expandedUsuario: Producto | null;
+  expandedproducto: Producto | null;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  constructor(private productosFacade: ProductosFacade, private coreFacade: CoreFacade) {}
+  constructor(
+    private productosFacade: ProductosFacade,
+    private coreFacade: CoreFacade,
+    private modalFacade: ModalFacade
+  ) {}
 
   ngOnInit(): void {
     this.productosFacade.fechtProductos();
@@ -48,5 +53,23 @@ export class ProductosTableComponent implements OnInit {
       page: $event.pageIndex + 1
     };
     this.productosFacade.fechtProductos(data);
+  }
+
+  crearProducto() {
+    this.modalFacade.productoModal({ type: "create" });
+  }
+
+  editProducto(producto: Producto) {
+    this.modalFacade.productoModal({ type: "edit", producto: producto });
+    this.productosFacade.setProducto(producto);
+  }
+
+  removeProducto(producto: Producto) {
+    this.modalFacade.confirmModal({
+      type: "delete",
+      titulo: "borrar producto",
+      subtitulo: "Confirma borrar el siguiente producto:",
+      producto: producto
+    });
   }
 }
