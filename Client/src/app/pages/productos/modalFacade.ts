@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ProductoModalComponent } from "@productos/containers/index";
+import { ProductoModalComponent } from "@productos/containers/producto-modal/producto-modal.component";
 import { ConfirmModalComponent } from "@shared/containers";
 import { MatDialog } from "@angular/material/dialog";
 import { Producto } from "@models";

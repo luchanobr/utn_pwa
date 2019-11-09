@@ -62,7 +62,7 @@ export class UsuariosTableComponent implements OnInit {
 
   removeUsuario(usuario: Usuario) {
     this.modalFacade.confirmModal({
-      type: "delete",
+      type: "usuario",
       titulo: "borrar usuario",
       subtitulo: "Confirma borrar el siguiente usuario:",
       usuario: usuario

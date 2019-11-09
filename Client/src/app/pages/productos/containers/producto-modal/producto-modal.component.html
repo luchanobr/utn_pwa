@@ -37,21 +37,38 @@
           class="col-auto mr-5"
           formControlName="active"
           value="true"
+          [checked]="true"
         >
           Activo</mat-slide-toggle
         >
-        <mat-slide-toggle color="primary" class="col-auto" formControlName="destacado" value="true">
+        <mat-slide-toggle
+          color="primary"
+          class="col-auto"
+          formControlName="destacado"
+          value="true"
+          [checked]="true"
+        >
           Destacado</mat-slide-toggle
         >
       </div>
 
+      <form [formGroup]="productoForm.get('categoria')" class="col-10">
+        <mat-form-field class="col-12">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="_id">
+            <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria._id">
+              {{ categoria.categoria }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
       <mat-form-field class="col-10">
-        <mat-label>Categoria</mat-label>
-        <mat-select formControlName="categoria">
-          <mat-option *ngFor="let categoria of categorias$" [value]="categoria">
-            {{ categoria.categoria }}
-          </mat-option>
-        </mat-select>
+        <input matInput placeholder="Ingrese el precio" formControlName="precio" type="number" />
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-10">
+        <input matInput placeholder="Ingrese el stock" formControlName="stock" type="number" />
+        <mat-error></mat-error>
       </mat-form-field>
     </div>
   </div>

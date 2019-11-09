@@ -16,6 +16,6 @@ export class CategoriaService {
   url: string = `${environment.apiUrl}categorias`;
 
   findAll() {
-    return this.http.get<Array<Categoria>>(this.url);
+    return this.http.get<{ data: Array<Categoria> }>(this.url, this.httpOptions);
   }
 }

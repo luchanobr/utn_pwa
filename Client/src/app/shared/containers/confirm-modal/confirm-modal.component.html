@@ -1,13 +1,22 @@
 <h3 mat-dialog-title>{{ data.titulo }}</h3>
 <div class="row" mat-dialog-content>
-  <div class="col">
-    <h5>{{ data.subtitulo }}</h5>
-    <p>
-      {{ data.usuario._id }}
-      {{ data.usuario.nombre }}
-      {{ data.usuario.email }}
-    </p>
-  </div>
+  <ng-container [ngSwitch]="data.type">
+    <div class="col" *ngSwitchCase="'usuario'">
+      <h5>{{ data.subtitulo }}</h5>
+      <p>
+        {{ data.usuario._id }}
+        {{ data.usuario.nombre }}
+        {{ data.usuario.email }}
+      </p>
+    </div>
+    <div class="col" *ngSwitchCase="'producto'">
+      <h5>{{ data.subtitulo }}</h5>
+      <p>
+        {{ data.producto._id }}
+        {{ data.producto.nombre }}
+      </p>
+    </div>
+  </ng-container>
 </div>
 <div mat-dialog-actions>
   <button mat-button color="primary" (click)="volver()">No</button>

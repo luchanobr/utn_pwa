@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { ProductosFacade } from "../../productos.facade";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormGroup } from "@angular/forms";
-import { Producto } from "@app/core/models";
+import { Producto, Categoria } from "@app/core/models";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-producto-modal",
@@ -10,6 +11,7 @@ import { Producto } from "@app/core/models";
 })
 export class ProductoModalComponent implements OnInit {
   productoForm: FormGroup;
+  categorias$: Observable<Array<Categoria>>;
   constructor(
     private productosFacade: ProductosFacade,
     @Inject(MAT_DIALOG_DATA) public data: { type: string; producto: Producto },
@@ -17,7 +19,9 @@ export class ProductoModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.productosFacade.fetchCategorias();
     this.productoForm = this.productosFacade.productoForm;
+    this.categorias$ = this.productosFacade.getCategorias;
   }
 
   volver(): void {

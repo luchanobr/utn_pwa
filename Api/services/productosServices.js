@@ -38,7 +38,7 @@ module.exports = {
 
     updateOne: async (id, producto) => {
         try {
-            return await productoModel.updateOne({ _id: id }, producto);
+            return await productoModel.findByIdAndUpdate(id, producto);
         } catch (e) {
             return e;
         }

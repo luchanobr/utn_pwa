@@ -66,7 +66,7 @@ export class ProductosTableComponent implements OnInit {
 
   removeProducto(producto: Producto) {
     this.modalFacade.confirmModal({
-      type: "delete",
+      type: "producto",
       titulo: "borrar producto",
       subtitulo: "Confirma borrar el siguiente producto:",
       producto: producto
