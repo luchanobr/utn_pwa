@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 //components
 import { DashboardComponent } from "./view/dashboard.component";
-import { ComprasComponent } from "./containers/compras/compras.component";
+
 import { SettingsComponent } from "./containers/settings/settings.component";
 
 const routes: Routes = [
@@ -14,15 +14,20 @@ const routes: Routes = [
     children: [
       {
         path: "usuarios",
-        loadChildren: () => import("../usuarios/usuarios.module").then(mod => mod.UsuariosModule)
+        loadChildren: () =>
+          import("../usuarios/usuarios.module").then(mod => mod.UsuariosModule)
       },
       {
         path: "productos",
-        loadChildren: () => import("../productos/productos.module").then(mod => mod.ProductosModule)
+        loadChildren: () =>
+          import("../productos/productos.module").then(
+            mod => mod.ProductosModule
+          )
       },
       {
         path: "compras",
-        component: ComprasComponent
+        loadChildren: () =>
+          import("../compras/compras.module").then(mod => mod.ComprasModule)
       },
       {
         path: "settings",
