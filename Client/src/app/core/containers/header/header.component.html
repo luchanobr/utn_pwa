@@ -1,39 +1,11 @@
 <mat-toolbar color="primary" class="sticky-top">
-  <mat-toolbar-row>
-    <div class="d-lg-none">
-      <a (click)="sidenavToggle()">
-        <i class="material-icons pointer">
-          menu
-        </i>
-      </a>
-    </div>
+  <mat-toolbar-row
+    class="d-flex justify-content-between "
+    [ngClass]="{ 'justify-content-around': isSmallScreen }"
+  >
+    <div class="">Wyxic</div>
 
-    <div class="mx-auto mx-lg-0 pr-4">Wyxic</div>
-
-    <nav class="d-none d-lg-block flex-grow-1 margin-nav-link">
-      <ul class="justify-content-center flex-row navbar-nav">
-        <li class="nav-item mx-3">
-          <a
-            routerLink="home"
-            class="nav-link text-blanco"
-            routerLinkActive="active-nav-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item mx-3" *ngIf="user$ | async">
-          <a
-            routerLink="dashboard"
-            routerLinkActive="active-nav-link"
-            [routerLinkActiveOptions]="{ exact: false }"
-            class="nav-link text-blanco"
-            >Dashboard</a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <div *ngIf="user$ | async" class="d-none d-lg-block position-fixed float-right right">
+    <div *ngIf="user$ | async" class="d-none d-lg-block">
       <ul class="flex-row navbar-nav">
         <li class="nav-item mx-3">
           <a class="nav-link d-flex align-items-center pointer">
@@ -53,12 +25,65 @@
           </a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link d-flex align-items-center pointer" (click)="logout()">
+          <a
+            class="nav-link d-flex align-items-center pointer"
+            (click)="logout()"
+          >
             <span> Logout </span>
             <i class=" ml-1 material-icons"> power_settings_new </i>
           </a>
         </li>
       </ul>
     </div>
+    <div class="d-lg-none">
+      <a (click)="sidenavToggle()">
+        <i class="material-icons pointer">
+          menu
+        </i>
+      </a>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="bg-white border-bottom border-primary">
+    <nav class="d-none d-lg-block flex-grow-1">
+      <ul class="justify-content-center flex-row navbar-nav">
+        <li class="nav-item mx-3">
+          <a
+            routerLink="home"
+            class="nav-link "
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            routerLink="login"
+            class="nav-link "
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            routerLink="singUp"
+            class="nav-link "
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Sing Up</a
+          >
+        </li>
+        <li class="nav-item mx-3" *ngIf="isAdmin$ | async">
+          <a
+            routerLink="dashboard"
+            routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: false }"
+            class="nav-link "
+            >Dashboard</a
+          >
+        </li>
+      </ul>
+    </nav>
   </mat-toolbar-row>
 </mat-toolbar>

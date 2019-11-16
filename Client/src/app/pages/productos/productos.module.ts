@@ -4,7 +4,7 @@ import { ProductosRoutingModule } from "./productos-routing.module";
 import { ProductosStore } from "./productos.store";
 import { ProductosFacade } from "./productos.facade";
 import { ModalFacade } from "./modalFacade";
-import { CategoriaService } from "../services";
+import { CategoriaService } from "./services";
 
 //componentes
 import { ProductosAdminComponent } from "./view/productos-admin.component";
@@ -28,7 +28,11 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
-  declarations: [ProductosAdminComponent, ProductosTableComponent, ProductoModalComponent],
+  declarations: [
+    ProductosAdminComponent,
+    ProductosTableComponent,
+    ProductoModalComponent
+  ],
   entryComponents: [ProductoModalComponent],
   imports: [
     ProductosRoutingModule,

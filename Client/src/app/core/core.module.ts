@@ -1,5 +1,10 @@
 // angular core and common modules
-import { NgModule, Optional, SkipSelf, ModuleWithProviders } from "@angular/core";
+import {
+  NgModule,
+  Optional,
+  SkipSelf,
+  ModuleWithProviders
+} from "@angular/core";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 // modules
@@ -21,12 +26,19 @@ import { LoadingBarModule } from "@ngx-loading-bar/core";
 
 // components
 import { HomeComponent } from "@core/view/home.component";
-import { HeaderComponent, FooterComponent, SideNavComponent } from "@core/containers/index";
-import { LoginFormComponent } from "@shared/containers/login-form/login-form.component";
+import {
+  HeaderComponent,
+  FooterComponent,
+  SideNavComponent
+} from "@core/containers/index";
 
 // services
 import { CoreFacade } from "@app/core/core.facade";
-import { AuthInterceptorService, AuthServices, ProductosService } from "@services";
+import {
+  AuthInterceptorService,
+  AuthServices,
+  ProductosService
+} from "@services";
 import { CoreStore } from "@core/core.store";
 import { AuthGuard } from "./guards/auth.guard";
 
@@ -35,8 +47,7 @@ import { AuthGuard } from "./guards/auth.guard";
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SideNavComponent,
-    LoginFormComponent
+    SideNavComponent
   ],
   imports: [
     AngularCommonModule,
@@ -81,7 +92,11 @@ export class CoreModule {
         CoreStore,
         AuthServices,
         ProductosService,
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptorService,
+          multi: true
+        },
         AuthGuard
       ]
     };
