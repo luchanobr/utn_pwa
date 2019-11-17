@@ -18,6 +18,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatIconModule } from "@angular/material/icon";
 
 // 3rd party libraries
 import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
@@ -41,13 +42,17 @@ import {
 } from "@services";
 import { CoreStore } from "@core/core.store";
 import { AuthGuard } from "./guards/auth.guard";
+import { ProductoCardComponent } from "@app/shared/containers/producto-card/producto-card.component";
+import { CarritoFacade } from "./carrito.facade";
+import { CarritoStore } from "./carrito.store";
 
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SideNavComponent
+    SideNavComponent,
+    ProductoCardComponent
   ],
   imports: [
     AngularCommonModule,
@@ -60,7 +65,8 @@ import { AuthGuard } from "./guards/auth.guard";
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   exports: [
     LoadingBarHttpClientModule,
@@ -92,6 +98,8 @@ export class CoreModule {
         CoreStore,
         AuthServices,
         ProductosService,
+        CarritoFacade,
+        CarritoStore,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptorService,

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { AuthServices } from "@services";
-import { Credential } from "@models";
+import { AuthServices, ProductosService } from "@services";
+import { Credential, Producto } from "@models";
 import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
 import { CoreStore } from "@core/core.store";
 import { User } from "@models";
 import { Router } from "@angular/router";
@@ -11,7 +12,8 @@ export class CoreFacade {
   constructor(
     private aothService: AuthServices,
     private coreStore: CoreStore,
-    private router: Router
+    private router: Router,
+    private productosService: ProductosService
   ) {}
 
   loginUser(crendential: Credential) {
@@ -47,14 +49,23 @@ export class CoreFacade {
 
   get isAdmin(): Observable<boolean> {
     let admin: boolean = false;
-    this.coreStore.getUser.subscribe(user => (user.admin ? (admin = true) : null));
+    this.coreStore.getUser.subscribe(user =>
+      user.admin ? (admin = true) : null
+    );
     return of(admin);
   }
   get isSuperAdmin(): Observable<boolean> {
     let superAdmin;
     this.coreStore.getUser.subscribe(user =>
-      user.permisos.compras === "crear" ? (superAdmin = true) : (superAdmin = false)
+      user.permisos.compras === "crear"
+        ? (superAdmin = true)
+        : (superAdmin = false)
     );
     return of(superAdmin);
+  }
+
+  get getProductosDestacados(): Observable<Array<Producto>> {
+    const data = { page: 1 };
+    return this.productosService.findAll(data).pipe(map(res => res.data.docs));
   }
 }

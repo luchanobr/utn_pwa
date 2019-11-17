@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>{{ producto.nombre }}</mat-card-title>
+
+  <mat-card-subtitle>
+    <span *ngIf="producto.destacado" class="d-flex align-items-center">
+      <mat-icon class="text-primary ">stars</mat-icon>Destacado</span
+    >
+  </mat-card-subtitle>
+
+  <img mat-card-image src="{{ producto.img }}" class="img-fluid" alt="" />
+
+  <mat-card-content> </mat-card-content>
+  <p class="text-justify">
+    {{ producto.descripcion }}
+  </p>
+
+  <p>Stock: {{ producto.stock }}</p>
+  <h5>Precio: {{ producto.precio | currency }}</h5>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button
+      mat-flat-button
+      class="bg-primary text-white"
+      type="button"
+      (click)="agregarProducto()"
+    >
+      Agregar al carrito
+    </button>
+    <button mat-flat-button class="bg-success text-white ml-3" type="button">
+      Comprar
+    </button>
+  </mat-card-actions>
+</mat-card>

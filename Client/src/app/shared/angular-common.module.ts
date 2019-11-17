@@ -10,6 +10,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatBadgeModule } from "@angular/material/badge";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [LoginFormComponent],
@@ -23,7 +26,10 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatBadgeModule,
+    MatTooltipModule
   ],
   exports: [
     CommonModule,
@@ -36,7 +42,10 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatBadgeModule,
+    MatTooltipModule
   ]
 })
 export class AngularCommonModule {}
