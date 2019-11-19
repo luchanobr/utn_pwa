@@ -9,3 +9,4 @@ export * from "./usuariosApi.interface";
 export * from "./categoria.interface";
 export * from "./producto.interface";
 export * from "./productosApi.interface";
+export * from "./filter-producto.interface";

@@ -1,0 +1,27 @@
+<h4 class="text-primary">Filter:</h4>
+
+<form [formGroup]="filterForm" (submit)="filterProductos(filterForm.value)">
+  <mat-form-field class="col-10">
+    <input
+      matInput
+      placeholder="Ingrese el nombre del producto"
+      formControlName="nombre"
+      type="text"
+    />
+    <mat-error></mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="col-10">
+    <mat-label>Categorias</mat-label>
+    <mat-select formControlName="categoria">
+      <mat-option
+        *ngFor="let categoria of categorias$ | async"
+        [value]="categoria._id"
+      >
+        {{ categoria.categoria }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  {{ filterForm.value | json }}
+</form>

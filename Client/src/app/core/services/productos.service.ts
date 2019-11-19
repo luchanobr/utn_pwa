@@ -17,9 +17,9 @@ export class ProductosService {
 
   url: string = `${environment.apiUrl}productos`;
 
-  findAll(data) {
+  findAll(filter) {
     return this.http.get<ProductosApi>(this.url, {
-      params: data,
+      params: filter,
       headers: new HttpHeaders({ "Content-Type": "application/json" }),
       withCredentials: true
     });

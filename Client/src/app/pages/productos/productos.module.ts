@@ -4,7 +4,7 @@ import { ProductosRoutingModule } from "./productos-routing.module";
 import { ProductosStore } from "./productos.store";
 import { ProductosFacade } from "./productos.facade";
 import { ModalFacade } from "./modalFacade";
-import { CategoriaService } from "./services";
+import { CategoriaService } from "@services";
 
 //componentes
 import { ProductosAdminComponent } from "./view/productos-admin.component";

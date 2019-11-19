@@ -30,6 +30,11 @@ const routes: Routes = [
       import("./pages/login/login.module").then(m => m.LoginModule)
   },
   {
+    path: "market",
+    loadChildren: () =>
+      import("./pages/market/market.module").then(m => m.MarketModule)
+  },
+  {
     path: "**",
     redirectTo: "home"
   }

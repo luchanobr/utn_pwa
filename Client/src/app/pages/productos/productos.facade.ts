@@ -3,7 +3,7 @@ import { ProductosService } from "@app/core/services";
 import { ProductosStore } from "./productos.store";
 import { Paginador, Producto } from "@models";
 import { FormBuilder, Validators } from "@angular/forms";
-import { CategoriaService } from "./services";
+import { CategoriaService } from "@services";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog } from "@angular/material/dialog";
 import { AlertComponent } from "@shared/containers/alert/alert.component";

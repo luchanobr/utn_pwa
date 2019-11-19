@@ -18,7 +18,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { MatIconModule } from "@angular/material/icon";
 
 // 3rd party libraries
 import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
@@ -42,7 +41,7 @@ import {
 } from "@services";
 import { CoreStore } from "@core/core.store";
 import { AuthGuard } from "./guards/auth.guard";
-import { ProductoCardComponent } from "@app/shared/containers/producto-card/producto-card.component";
+
 import { CarritoFacade } from "./carrito.facade";
 import { CarritoStore } from "./carrito.store";
 
@@ -51,8 +50,7 @@ import { CarritoStore } from "./carrito.store";
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SideNavComponent,
-    ProductoCardComponent
+    SideNavComponent
   ],
   imports: [
     AngularCommonModule,
@@ -65,8 +63,7 @@ import { CarritoStore } from "./carrito.store";
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSnackBarModule,
-    MatIconModule
+    MatSnackBarModule
   ],
   exports: [
     LoadingBarHttpClientModule,

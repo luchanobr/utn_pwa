@@ -13,9 +13,11 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { ProductoCardComponent } from "./containers/producto-card/producto-card.component";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
-  declarations: [LoginFormComponent],
+  declarations: [LoginFormComponent, ProductoCardComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,13 +31,15 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatSnackBarModule,
     MatDividerModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     LoginFormComponent,
+    ProductoCardComponent,
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
@@ -45,7 +49,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatSnackBarModule,
     MatDividerModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatIconModule
   ]
 })
 export class AngularCommonModule {}
