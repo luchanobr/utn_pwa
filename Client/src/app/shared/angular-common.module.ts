@@ -15,9 +15,14 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { ProductoCardComponent } from "./containers/producto-card/producto-card.component";
 import { MatIconModule } from "@angular/material/icon";
+import { ProductoMiniCardComponent } from "./containers/producto-mini-card/producto-mini-card.component";
 
 @NgModule({
-  declarations: [LoginFormComponent, ProductoCardComponent],
+  declarations: [
+    LoginFormComponent,
+    ProductoCardComponent,
+    ProductoMiniCardComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +45,7 @@ import { MatIconModule } from "@angular/material/icon";
     ReactiveFormsModule,
     LoginFormComponent,
     ProductoCardComponent,
+    ProductoMiniCardComponent,
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,

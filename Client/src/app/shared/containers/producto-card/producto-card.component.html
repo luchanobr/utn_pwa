@@ -9,13 +9,14 @@
 
   <img mat-card-image src="{{ producto.img }}" class="img-fluid" alt="" />
 
-  <mat-card-content> </mat-card-content>
-  <p class="text-justify">
-    {{ producto.descripcion }}
-  </p>
+  <mat-card-content>
+    <p class="text-justify">
+      {{ producto.descripcion }}
+    </p>
 
-  <p>Stock: {{ producto.stock }}</p>
-  <h5>Precio: {{ producto.precio | currency }}</h5>
+    <p>Stock: {{ producto.stock }}</p>
+    <h5>Precio: {{ producto.precio | currency }}</h5>
+  </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions>
     <button
@@ -26,7 +27,12 @@
     >
       Agregar al carrito
     </button>
-    <button mat-flat-button class="bg-success text-white ml-3" type="button">
+    <button
+      mat-flat-button
+      class="bg-success text-white ml-3"
+      (click)="buyProducto()"
+      type="button"
+    >
       Comprar
     </button>
   </mat-card-actions>

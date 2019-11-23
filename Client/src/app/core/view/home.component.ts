@@ -23,4 +23,8 @@ export class HomeComponent implements OnInit {
   agregarProducto(producto: Producto) {
     this.carritoFacade.setCarrito = producto;
   }
+
+  buy() {
+    this.carritoFacade.buy();
+  }
 }

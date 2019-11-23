@@ -11,10 +11,8 @@ import { CarritoFacade } from "@app/core/carrito.facade";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  user$: Observable<User>;
-  isAdmin$: Observable<boolean>;
   isSmallScreen: boolean;
-  carrito$: Observable<Array<Producto>>;
+
   @Output() sidenav = new EventEmitter<boolean>();
 
   constructor(
@@ -31,13 +29,22 @@ export class HeaderComponent implements OnInit {
           ? (this.isSmallScreen = true)
           : (this.isSmallScreen = false)
       );
-    this.user$ = this.coreFacade.getUser;
-    this.isAdmin$ = this.coreFacade.isAdmin;
-    this.carrito$ = this.carritoFacade.getCarrito$;
   }
 
   sidenavToggle() {
     this.sidenav.emit();
+  }
+
+  get isAdmin$() {
+    return this.coreFacade.isAdmin;
+  }
+
+  get user$() {
+    return this.coreFacade.getUser;
+  }
+
+  get carrito$() {
+    return this.carritoFacade.getCarrito$;
   }
 
   logout() {

@@ -1,0 +1,14 @@
+<h4>Tu compra</h4>
+
+<div *ngIf="getUser$ | async">
+  <p>Usuario: {{ (getUser$ | async)?.nombre }}</p>
+</div>
+
+<div class="row">
+  <ng-container *ngFor="let producto of getCarrito$ | async">
+    <producto-mini-card
+      [producto]="producto"
+      class="col-4"
+    ></producto-mini-card>
+  </ng-container>
+</div>

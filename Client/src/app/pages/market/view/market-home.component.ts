@@ -31,4 +31,8 @@ export class MarketHomeComponent implements OnInit {
   get categorias$() {
     return this.marketFacade.getCategorias$;
   }
+
+  buy(e) {
+    this.carritoFacade.buy();
+  }
 }

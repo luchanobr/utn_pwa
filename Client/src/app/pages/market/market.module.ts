@@ -7,11 +7,16 @@ import { MarketStore } from "./market.store";
 import { ProductoFilterComponent } from "./containers/producto-filter/producto-filter.component";
 import { MatSelectModule } from "@angular/material/select";
 import { CategoriaService } from "@app/core/services";
+import { ComprasFormComponent } from "./containers/compras-form/compras-form.component";
 
 @NgModule({
   imports: [AngularCommonModule, MarketRoutingModule, MatSelectModule],
   exports: [],
-  declarations: [MarketHomeComponent, ProductoFilterComponent],
+  declarations: [
+    MarketHomeComponent,
+    ProductoFilterComponent,
+    ComprasFormComponent
+  ],
   providers: [MarketFacade, MarketStore, CategoriaService]
 })
 export class MarketModule {}

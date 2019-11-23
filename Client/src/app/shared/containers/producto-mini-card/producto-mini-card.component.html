@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>
+    {{ producto.nombre }}
+  </mat-card-title>
+
+  <img mat-card-image src="{{ producto.img }}" class="img-fluid" alt="" />
+
+  <h5>Precio: {{ producto.precio | currency }}</h5>
+</mat-card>
