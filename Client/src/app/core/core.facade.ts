@@ -48,12 +48,9 @@ export class CoreFacade {
   }
 
   get isAdmin(): Observable<boolean> {
-    let admin: boolean = false;
-    this.coreStore.getUser.subscribe(user =>
-      user.admin ? (admin = true) : null
-    );
-    return of(admin);
+    return this.coreStore.isAdmin;
   }
+
   get isSuperAdmin(): Observable<boolean> {
     let superAdmin;
     this.coreStore.getUser.subscribe(user =>

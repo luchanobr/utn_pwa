@@ -12,6 +12,8 @@ import { Paginador, FilterProducto, Categoria } from "@app/core/models";
 import { CategoriaService } from "@services";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
+import { CoreStore } from "@app/core";
+import { CarritoStore } from "@app/core/carrito.store";
 
 @Injectable()
 export class MarketFacade {
@@ -20,6 +22,8 @@ export class MarketFacade {
     private productosService: ProductosService,
     private marketStore: MarketStore,
     private categoriasService: CategoriaService,
+    private carritoStore: CarritoStore,
+    private coreStore: CoreStore,
     private fb: FormBuilder
   ) {
     this.fetchProductos$({ page: 1 });
@@ -63,9 +67,23 @@ export class MarketFacade {
     return this.categorias$;
   }
 
+  get total$() {
+    return this.carritoStore.total$;
+  }
+
   filterForm = this.fb.group({
     page: [1, Validators.required],
     nombre: [""],
     categoria: [""]
+  });
+
+  compraForm = this.fb.group({
+    usuario: [this.coreStore.userId],
+    productos: [this.carritoStore.getCarrito],
+    total: [this.carritoStore.total],
+    direccion: [, Validators.required],
+    fecha: [new Date(), Validators.required],
+    hora: [null],
+    factura: [null]
   });
 }

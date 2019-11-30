@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
-import { User } from '@models';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import { distinctUntilChanged } from "rxjs/operators";
+import { User } from "@models";
 
 @Injectable()
 export class CoreStore {
@@ -14,5 +14,22 @@ export class CoreStore {
   }
   get getUser(): Observable<User> {
     return this.user$.asObservable().pipe(distinctUntilChanged());
+  }
+
+  get isAdmin(): Observable<boolean> {
+    let user = this.user$.getValue();
+
+    return of(user.admin);
+  }
+
+  get isSuperAdmin(): Observable<boolean> {
+    let user = this.user$.getValue();
+    let superAdmin = false;
+    user.permisos.compras === "crear" ? (superAdmin = true) : null;
+    return of(superAdmin);
+  }
+
+  get userId(): string {
+    return this.user$.getValue().id;
   }
 }

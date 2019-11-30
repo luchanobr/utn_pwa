@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, of, Observable } from "rxjs";
 import { Producto } from "./models";
 import { distinctUntilChanged } from "rxjs/operators";
 
@@ -30,7 +30,34 @@ export class CarritoStore {
   removeProducto(id: string) {
     const oldCarrito = this.carrito$.getValue();
     const index = oldCarrito.findIndex(producto => (producto._id = id));
-    const newcarrito = oldCarrito.splice(index, 1);
+    let newcarrito = oldCarrito.splice(index, 1);
+    newcarrito.length == 0 ? (newcarrito = null) : null;
     this.setCarrito = newcarrito;
+  }
+
+  get total(): number {
+    let total: number = 0;
+
+    if (this.getCarrito != null) {
+      (total = this.getCarrito
+        .map(prod => prod.precio)
+        .reduce((acc, next) => acc + next)),
+        0;
+    }
+
+    return total;
+  }
+
+  get total$(): Observable<number> {
+    let total: number = 0;
+
+    if (this.getCarrito != null) {
+      (total = this.getCarrito
+        .map(prod => prod.precio)
+        .reduce((acc, next) => acc + next)),
+        0;
+    }
+
+    return of(total);
   }
 }

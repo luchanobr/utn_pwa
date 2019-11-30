@@ -2,6 +2,7 @@
 
 <div *ngIf="getUser$ | async">
   <p>Usuario: {{ (getUser$ | async)?.nombre }}</p>
+  <p>Total: {{ marketFacade.total$ | async | currency }}</p>
 </div>
 
 <div class="row">
@@ -12,3 +13,5 @@
     ></producto-mini-card>
   </ng-container>
 </div>
+
+{{ marketFacade.compraForm.value | json }}
